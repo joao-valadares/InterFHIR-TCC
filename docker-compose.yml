@@ -1,0 +1,378 @@
+services:
+  hospital-a-metadata-postgres:
+    image: postgres:16-alpine@sha256:0cefaabd882e42bcb2a2f3dc56d3ce4770560ba62fd7f197f1a2e008fd5731ab
+    environment:
+      POSTGRES_DB: interfhir_hospital_a_metadata
+      POSTGRES_USER: hospital_a_metadata
+      POSTGRES_PASSWORD: hospital_a_metadata
+    volumes:
+      - hospital-a-metadata-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U hospital_a_metadata -d interfhir_hospital_a_metadata
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    networks:
+      - hospital-a-metadata
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  clinic-b-metadata-postgres:
+    image: postgres:16-alpine@sha256:0cefaabd882e42bcb2a2f3dc56d3ce4770560ba62fd7f197f1a2e008fd5731ab
+    environment:
+      POSTGRES_DB: interfhir_clinic_b_metadata
+      POSTGRES_USER: clinic_b_metadata
+      POSTGRES_PASSWORD: clinic_b_metadata
+    volumes:
+      - clinic-b-metadata-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U clinic_b_metadata -d interfhir_clinic_b_metadata
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    networks:
+      - clinic-b-metadata
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  hospital-a-postgres:
+    image: postgres:16-alpine@sha256:0cefaabd882e42bcb2a2f3dc56d3ce4770560ba62fd7f197f1a2e008fd5731ab
+    environment:
+      POSTGRES_DB: hapi
+      POSTGRES_USER: hapi
+      POSTGRES_PASSWORD: hapi
+    volumes:
+      - hospital-a-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U hapi -d hapi
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - hospital-a-vault
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  hospital-a-fhir:
+    image: ${INTERFHIR_PROJECT_NAME}-hospital-a-fhir:local
+    build:
+      context: .
+      dockerfile: docker/hapi-fhir.Dockerfile
+    depends_on:
+      hospital-a-postgres:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://hospital-a-postgres:5432/hapi
+      - SPRING_DATASOURCE_USERNAME=hapi
+      - SPRING_DATASOURCE_PASSWORD=hapi
+      - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
+      - SPRING_APPLICATION_JSON={"spring.jpa.properties.hibernate.dialect":"ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect"}
+      - HAPI_FHIR_FHIR_VERSION=R4
+      - HAPI_FHIR_ALLOW_EXTERNAL_REFERENCES=false
+      - HAPI_FHIR_REUSE_CACHED_SEARCH_RESULTS_MILLIS=-1
+    healthcheck:
+      test:
+        - CMD
+        - java
+        - "-cp"
+        - /opt/interfhir-healthcheck
+        - FhirMetadataHealthcheck
+        - http://127.0.0.1:8080/fhir/metadata
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 60s
+    networks:
+      - hospital-a-vault
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  clinic-b-postgres:
+    image: postgres:16-alpine@sha256:0cefaabd882e42bcb2a2f3dc56d3ce4770560ba62fd7f197f1a2e008fd5731ab
+    environment:
+      POSTGRES_DB: hapi
+      POSTGRES_USER: hapi
+      POSTGRES_PASSWORD: hapi
+    volumes:
+      - clinic-b-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U hapi -d hapi
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - clinic-b-vault
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  clinic-b-fhir:
+    image: ${INTERFHIR_PROJECT_NAME}-clinic-b-fhir:local
+    build:
+      context: .
+      dockerfile: docker/hapi-fhir.Dockerfile
+    depends_on:
+      clinic-b-postgres:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://clinic-b-postgres:5432/hapi
+      - SPRING_DATASOURCE_USERNAME=hapi
+      - SPRING_DATASOURCE_PASSWORD=hapi
+      - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
+      - SPRING_APPLICATION_JSON={"spring.jpa.properties.hibernate.dialect":"ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect"}
+      - HAPI_FHIR_FHIR_VERSION=R4
+      - HAPI_FHIR_ALLOW_EXTERNAL_REFERENCES=false
+      - HAPI_FHIR_REUSE_CACHED_SEARCH_RESULTS_MILLIS=-1
+    healthcheck:
+      test:
+        - CMD
+        - java
+        - "-cp"
+        - /opt/interfhir-healthcheck
+        - FhirMetadataHealthcheck
+        - http://127.0.0.1:8080/fhir/metadata
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 60s
+    networks:
+      - clinic-b-vault
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  hospital-a-gateway:
+    restart: unless-stopped
+    profiles:
+      - gateways
+    build:
+      context: .
+      dockerfile: docker/middleware.Dockerfile
+    depends_on:
+      hospital-a-metadata-postgres:
+        condition: service_healthy
+      hospital-a-fhir:
+        condition: service_healthy
+    environment:
+      INSTITUTION_GATEWAY: hospital-a
+      FHIR_VAULT_ID: hospital-a
+      HEALTH_ACCESS_API_HOST: 0.0.0.0
+      HEALTH_ACCESS_API_PORT: "3000"
+      HEALTH_ACCESS_PUBLIC_PORT: "3000"
+      HEALTH_ACCESS_PEER_PORT: "4000"
+      FHIR_HOSPITAL_A_BASE_URL: http://hospital-a-fhir:8080/fhir
+      INSTITUTION_METADATA_DATABASE_URL: postgresql://hospital_a_metadata:hospital_a_metadata@hospital-a-metadata-postgres:5432/interfhir_hospital_a_metadata
+      MANIFEST_DATABASE_URL: postgresql://hospital_a_metadata:hospital_a_metadata@hospital-a-metadata-postgres:5432/interfhir_hospital_a_metadata
+      BLOCKCHAIN_RPC_URL: ${HOSPITAL_A_BLOCKCHAIN_RPC_URL:-http://besu-hospital-a-validator:8545}
+      HEALTH_ACCESS_CONTROL_ADDRESS: ${HOSPITAL_A_HEALTH_ACCESS_CONTROL_ADDRESS:-}
+      BLOCKCHAIN_DEPLOYER_PRIVATE_KEY: ${HOSPITAL_A_BLOCKCHAIN_DEPLOYER_PRIVATE_KEY:-}
+      BLOCKCHAIN_PATIENT_PRIVATE_KEY: ${HOSPITAL_A_BLOCKCHAIN_PATIENT_PRIVATE_KEY:-}
+      BLOCKCHAIN_PRACTITIONER_PRIVATE_KEY: ${HOSPITAL_A_BLOCKCHAIN_PRACTITIONER_PRIVATE_KEY:-}
+      BLOCKCHAIN_ORGANIZATION_PRIVATE_KEY: ${HOSPITAL_A_BLOCKCHAIN_ORGANIZATION_PRIVATE_KEY:-}
+      BLOCKCHAIN_PEP_PRIVATE_KEY: ${HOSPITAL_A_BLOCKCHAIN_PEP_PRIVATE_KEY:-}
+      HEALTH_ACCESS_TLS_KEY_PATH: /run/interfhir/pki/hospital-a/server.key
+      HEALTH_ACCESS_TLS_CERT_PATH: /run/interfhir/pki/hospital-a/server.crt
+      HEALTH_ACCESS_TLS_CA_PATH: /run/interfhir/pki/ca/ca.crt
+      HEALTH_ACCESS_CLIENT_TLS_KEY_PATH: /run/interfhir/pki/hospital-a/client.key
+      HEALTH_ACCESS_CLIENT_TLS_CERT_PATH: /run/interfhir/pki/hospital-a/client.crt
+      MTLS_EXPECTED_PEER_ORGANIZATION: Organization/clinic-b
+      OIDC_HOSPITAL_A_ISSUER: http://keycloak:8080/realms/hospital-a
+      OIDC_HOSPITAL_A_JWKS_URI: http://keycloak:8080/realms/hospital-a/protocol/openid-connect/certs
+      OIDC_HOSPITAL_A_AUDIENCE: interfhir-api
+      OIDC_CLINIC_B_ISSUER: http://keycloak:8080/realms/clinic-b
+      OIDC_CLINIC_B_JWKS_URI: http://keycloak:8080/realms/clinic-b/protocol/openid-connect/certs
+      OIDC_CLINIC_B_AUDIENCE: interfhir-api
+      UDAP_ENABLED: ${UDAP_ENABLED:-false}
+      UDAP_ISSUER: ${UDAP_ISSUER:-}
+      UDAP_BASE_URL: ${UDAP_BASE_URL:-}
+      UDAP_TOKEN_AUDIENCE: ${UDAP_TOKEN_AUDIENCE:-}
+      UDAP_SIGNING_KEY_PATH: /run/interfhir/udap/hospital-a-signing.key
+      UDAP_SIGNING_KEY_ID: ${UDAP_SIGNING_KEY_ID:-}
+      UDAP_SIGNING_ALGORITHM: ${UDAP_SIGNING_ALGORITHM:-RS256}
+      UDAP_TRUSTED_JWKS_PATH: /run/interfhir/udap/hospital-a-trusted-jwks.json
+      UDAP_ISSUER_JWKS_PATH: /run/interfhir/udap/hospital-a-issuer-jwks.json
+      UDAP_ISSUER_JWKS_URI: ${UDAP_ISSUER_JWKS_URI:-}
+      UDAP_SIGNED_METADATA_PATH: /run/interfhir/udap/hospital-a-signed-metadata.jwt
+      MANIFEST_SIGNING_PRIVATE_JWK: ${MANIFEST_SIGNING_PRIVATE_JWK:-}
+      MANIFEST_SIGNING_PUBLIC_JWK: ${MANIFEST_SIGNING_PUBLIC_JWK:-}
+      MANIFEST_SIGNING_KEY_ID: ${MANIFEST_SIGNING_KEY_ID:-}
+      HEALTH_ACCESS_BOOTSTRAP_ENABLED: "false"
+      INTERFHIR_DIAGNOSTICS: "true"
+    volumes:
+      - ${HOSPITAL_A_TLS_CA_PATH:-./.local/pki/ca/ca.crt}:/run/interfhir/pki/ca/ca.crt:ro
+      - ${HOSPITAL_A_TLS_KEY_PATH:-./.local/pki/hospital-a/server.key}:/run/interfhir/pki/hospital-a/server.key:ro
+      - ${HOSPITAL_A_TLS_CERT_PATH:-./.local/pki/hospital-a/server.crt}:/run/interfhir/pki/hospital-a/server.crt:ro
+      - ${HOSPITAL_A_TLS_CLIENT_KEY_PATH:-./.local/pki/hospital-a/client.key}:/run/interfhir/pki/hospital-a/client.key:ro
+      - ${HOSPITAL_A_TLS_CLIENT_CERT_PATH:-./.local/pki/hospital-a/client.crt}:/run/interfhir/pki/hospital-a/client.crt:ro
+      - ${UDAP_SIGNING_KEY_PATH:-./.local/udap/hospital-a-signing.key}:/run/interfhir/udap/hospital-a-signing.key:ro
+      - ${UDAP_SIGNING_PUBLIC_JWK_PATH:-./.local/udap/hospital-a-signing.jwk.json}:/run/interfhir/udap/hospital-a-signing.jwk.json:ro
+      - ${UDAP_ISSUER_JWKS_PATH:-./.local/udap/hospital-a-issuer-jwks.json}:/run/interfhir/udap/hospital-a-issuer-jwks.json:ro
+      - ${UDAP_TRUSTED_JWKS_PATH:-./.local/udap/hospital-a-trusted-jwks.json}:/run/interfhir/udap/hospital-a-trusted-jwks.json:ro
+      - ${UDAP_SIGNED_METADATA_PATH:-./.local/udap/hospital-a-signed-metadata.jwt}:/run/interfhir/udap/hospital-a-signed-metadata.jwt:ro
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - "-e"
+        - "const fs=require('node:fs'); const https=require('node:https'); const request=https.get('https://localhost:3000/health',{ca:fs.readFileSync(process.env.HEALTH_ACCESS_TLS_CA_PATH),rejectUnauthorized:true},(response)=>{response.resume(); process.exit(response.statusCode === 200 ? 0 : 1)}); request.on('error',()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    networks:
+      - hospital-a-vault
+      - hospital-a-metadata
+      - institutional-b2b
+      - institutional-identity
+      - institutional-blockchain
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+    image: ${INTERFHIR_PROJECT_NAME}-hospital-a-gateway:local
+  clinic-b-gateway:
+    restart: unless-stopped
+    profiles:
+      - gateways
+    build:
+      context: .
+      dockerfile: docker/middleware.Dockerfile
+    depends_on:
+      clinic-b-metadata-postgres:
+        condition: service_healthy
+      clinic-b-fhir:
+        condition: service_healthy
+    environment:
+      INSTITUTION_GATEWAY: clinic-b
+      FHIR_VAULT_ID: clinic-b
+      HEALTH_ACCESS_API_HOST: 0.0.0.0
+      HEALTH_ACCESS_API_PORT: "3000"
+      HEALTH_ACCESS_PUBLIC_PORT: "3000"
+      HEALTH_ACCESS_PEER_PORT: "4000"
+      FHIR_CLINIC_B_BASE_URL: http://clinic-b-fhir:8080/fhir
+      INSTITUTION_METADATA_DATABASE_URL: postgresql://clinic_b_metadata:clinic_b_metadata@clinic-b-metadata-postgres:5432/interfhir_clinic_b_metadata
+      MANIFEST_DATABASE_URL: postgresql://clinic_b_metadata:clinic_b_metadata@clinic-b-metadata-postgres:5432/interfhir_clinic_b_metadata
+      BLOCKCHAIN_RPC_URL: ${CLINIC_B_BLOCKCHAIN_RPC_URL:-http://besu-hospital-a-validator:8545}
+      HEALTH_ACCESS_CONTROL_ADDRESS: ${CLINIC_B_HEALTH_ACCESS_CONTROL_ADDRESS:-}
+      BLOCKCHAIN_DEPLOYER_PRIVATE_KEY: ${CLINIC_B_BLOCKCHAIN_DEPLOYER_PRIVATE_KEY:-}
+      BLOCKCHAIN_PATIENT_PRIVATE_KEY: ${CLINIC_B_BLOCKCHAIN_PATIENT_PRIVATE_KEY:-}
+      BLOCKCHAIN_PRACTITIONER_PRIVATE_KEY: ${CLINIC_B_BLOCKCHAIN_PRACTITIONER_PRIVATE_KEY:-}
+      BLOCKCHAIN_ORGANIZATION_PRIVATE_KEY: ${CLINIC_B_BLOCKCHAIN_ORGANIZATION_PRIVATE_KEY:-}
+      BLOCKCHAIN_PEP_PRIVATE_KEY: ${CLINIC_B_BLOCKCHAIN_PEP_PRIVATE_KEY:-}
+      HEALTH_ACCESS_TLS_KEY_PATH: /run/interfhir/pki/clinic-b/server.key
+      HEALTH_ACCESS_TLS_CERT_PATH: /run/interfhir/pki/clinic-b/server.crt
+      HEALTH_ACCESS_TLS_CA_PATH: /run/interfhir/pki/ca/ca.crt
+      HEALTH_ACCESS_CLIENT_TLS_KEY_PATH: /run/interfhir/pki/clinic-b/client.key
+      HEALTH_ACCESS_CLIENT_TLS_CERT_PATH: /run/interfhir/pki/clinic-b/client.crt
+      MTLS_EXPECTED_PEER_ORGANIZATION: Organization/hospital-a
+      OIDC_HOSPITAL_A_ISSUER: http://keycloak:8080/realms/hospital-a
+      OIDC_HOSPITAL_A_JWKS_URI: http://keycloak:8080/realms/hospital-a/protocol/openid-connect/certs
+      OIDC_HOSPITAL_A_AUDIENCE: interfhir-api
+      OIDC_CLINIC_B_ISSUER: http://keycloak:8080/realms/clinic-b
+      OIDC_CLINIC_B_JWKS_URI: http://keycloak:8080/realms/clinic-b/protocol/openid-connect/certs
+      OIDC_CLINIC_B_AUDIENCE: interfhir-api
+      UDAP_ENABLED: "false"
+      UDAP_REQUESTER_ENABLED: ${UDAP_CLINIC_B_ENABLED:-false}
+      UDAP_REQUESTER_DISCOVERY_URL: ${UDAP_CLINIC_B_DISCOVERY_URL:-}
+      UDAP_REQUESTER_SIGNING_KEY_PATH: /run/interfhir/udap/clinic-b-client-signing.key
+      UDAP_REQUESTER_PUBLIC_JWK_PATH: /run/interfhir/udap/clinic-b-client-public-jwk.json
+      UDAP_REQUESTER_SIGNING_KEY_ID: ${UDAP_CLINIC_B_SIGNING_KEY_ID:-}
+      UDAP_REQUESTER_SIGNING_ALGORITHM: ${UDAP_CLINIC_B_SIGNING_ALGORITHM:-RS256}
+      UDAP_REQUESTER_TRUSTED_JWKS_PATH: /run/interfhir/udap/hospital-a-issuer-jwks.json
+      MANIFEST_SIGNING_PRIVATE_JWK: ${MANIFEST_SIGNING_PRIVATE_JWK:-}
+      MANIFEST_SIGNING_PUBLIC_JWK: ${MANIFEST_SIGNING_PUBLIC_JWK:-}
+      MANIFEST_SIGNING_KEY_ID: ${MANIFEST_SIGNING_KEY_ID:-}
+      HEALTH_ACCESS_BOOTSTRAP_ENABLED: "false"
+      INTERFHIR_DIAGNOSTICS: "true"
+    volumes:
+      - ${CLINIC_B_TLS_CA_PATH:-./.local/pki/ca/ca.crt}:/run/interfhir/pki/ca/ca.crt:ro
+      - ${CLINIC_B_TLS_KEY_PATH:-./.local/pki/clinic-b/server.key}:/run/interfhir/pki/clinic-b/server.key:ro
+      - ${CLINIC_B_TLS_CERT_PATH:-./.local/pki/clinic-b/server.crt}:/run/interfhir/pki/clinic-b/server.crt:ro
+      - ${CLINIC_B_TLS_CLIENT_KEY_PATH:-./.local/pki/clinic-b/client.key}:/run/interfhir/pki/clinic-b/client.key:ro
+      - ${CLINIC_B_TLS_CLIENT_CERT_PATH:-./.local/pki/clinic-b/client.crt}:/run/interfhir/pki/clinic-b/client.crt:ro
+      - ${UDAP_CLINIC_B_SIGNING_KEY_PATH:-./.local/udap/clinic-b-client-signing.key}:/run/interfhir/udap/clinic-b-client-signing.key:ro
+      - ${UDAP_CLINIC_B_PUBLIC_JWK_PATH:-./.local/udap/clinic-b-client-public-jwk.json}:/run/interfhir/udap/clinic-b-client-public-jwk.json:ro
+      - ${UDAP_CLINIC_B_TRUSTED_JWKS_PATH:-./.local/udap/hospital-a-issuer-jwks.json}:/run/interfhir/udap/hospital-a-issuer-jwks.json:ro
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - "-e"
+        - "const fs=require('node:fs'); const https=require('node:https'); const request=https.get('https://localhost:3000/health',{ca:fs.readFileSync(process.env.HEALTH_ACCESS_TLS_CA_PATH),rejectUnauthorized:true},(response)=>{response.resume(); process.exit(response.statusCode === 200 ? 0 : 1)}); request.on('error',()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    networks:
+      - clinic-b-vault
+      - clinic-b-metadata
+      - institutional-b2b
+      - institutional-identity
+      - institutional-blockchain
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+    image: ${INTERFHIR_PROJECT_NAME}-clinic-b-gateway:local
+networks:
+  hospital-a-metadata:
+    name: ${INTERFHIR_PROJECT_NAME}-hospital-a-metadata
+    driver: bridge
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  clinic-b-metadata:
+    name: ${INTERFHIR_PROJECT_NAME}-clinic-b-metadata
+    driver: bridge
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  hospital-a-vault:
+    name: ${INTERFHIR_PROJECT_NAME}-hospital-a-vault
+    driver: bridge
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  clinic-b-vault:
+    name: ${INTERFHIR_PROJECT_NAME}-clinic-b-vault
+    driver: bridge
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  institutional-b2b:
+    name: ${INTERFHIR_PROJECT_NAME}-institutional-b2b
+    driver: bridge
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  institutional-identity:
+    name: ${INTERFHIR_PROJECT_NAME}-institutional-identity
+    external: false
+  institutional-blockchain:
+    name: ${INTERFHIR_PROJECT_NAME}-institutional-blockchain
+    external: false
+volumes:
+  hospital-a-metadata-postgres-data:
+    name: ${INTERFHIR_PROJECT_NAME}-hospital-a-metadata-postgres-data
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  clinic-b-metadata-postgres-data:
+    name: ${INTERFHIR_PROJECT_NAME}-clinic-b-metadata-postgres-data
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  hospital-a-postgres-data:
+    name: ${INTERFHIR_PROJECT_NAME}-hospital-a-postgres-data
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  clinic-b-postgres-data:
+    name: ${INTERFHIR_PROJECT_NAME}-clinic-b-postgres-data
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}

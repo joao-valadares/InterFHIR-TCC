@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 2,
+  "runId": "2026-10-15T18-02-25-196Z-def701ff",
+  "recordedAt": "2026-10-15T18:02:25.197Z",
+  "source": {
+    "revision": "8362df5bbc145e15fc66e205777337ccedb815d0",
+    "dirty": true,
+    "sourceHash": "1f8653255d2e172ef34551b425caa70a81b1b67035f29d8d6cec854d2cd52780",
+    "nodeVersion": "v24.10.0",
+    "platform": "win32"
+  },
+  "report": {
+    "schemaVersion": 2,
+    "generatedAt": "2026-10-15T18:02:25.194Z",
+    "executionMode": "environment-blocked",
+    "readiness": [
+      {
+        "service": "keycloak",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-oidc",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-oidc",
+        "status": "ok"
+      },
+      {
+        "service": "institutional-identity-network",
+        "status": "ok"
+      },
+      {
+        "service": "institutional-blockchain-network",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-fhir",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-fhir",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-metadata-postgres",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-metadata-postgres",
+        "status": "ok"
+      },
+      {
+        "service": "besu-hospital-a-validator",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-jwks",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-jwks",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-udap",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-gateway",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-udap-requester",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-gateway",
+        "status": "ok"
+      }
+    ],
+    "summary": {
+      "total": 20,
+      "passed": 0,
+      "failed": 0,
+      "blocked": 20
+    },
+    "scenarios": [
+      {
+        "id": "authorized-consent-read",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:48b61867bf26203a0d1700968294e4d8a114e07ec9f4256db1dbc332f3b95e64",
+        "observedReads": {}
+      },
+      {
+        "id": "authorized-general-policy-bruno",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:c4be2867ff9ff2df75136f5e29d9df72b0b1e9c14f881c05605b8726f8900c2b",
+        "observedReads": {}
+      },
+      {
+        "id": "authorized-general-policy-daniel",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:1db8302f34abad28f8f30dda2d1c23194f9ac7ac0d9ad9cc467ef94470a0e4fb",
+        "observedReads": {}
+      },
+      {
+        "id": "authorized-specialist-policy-carla",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:fca58457816fc91c843dbd3ba51ffd9253a7ffc8ab56f80ee86e1077d7f453e8",
+        "observedReads": {}
+      },
+      {
+        "id": "general-policy-role-denied",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:6e670f0623ca65ddb2a303c25784b453af604f39c66991f20a947be89bd0a53f",
+        "observedReads": {}
+      },
+      {
+        "id": "specialist-policy-role-denied",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:3ac17f30d7227737ad41ada8d09013ba9255a97e5fa2b8bdc7d10053a4721737",
+        "observedReads": {}
+      },
+      {
+        "id": "specialist-policy-specialty-denied",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:dd0ab22e1e6a8bf09ffe8a525aee0da58cdfa6243530c77a5d5a64129e852d98",
+        "observedReads": {}
+      },
+      {
+        "id": "wrong-organization",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:c8a794c97e02fe1dfed94d44514c6c4a9ee6ba0dc687018487143414bf829631",
+        "observedReads": {}
+      },
+      {
+        "id": "wrong-practitioner",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:66982660d29ce466f65be340a0cf9a5ea1242e782427ff4010dfa250c09e78b6",
+        "observedReads": {}
+      },
+      {
+        "id": "purpose-mismatch",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:34d3abd6e515119a3b80eae49397af699699cf81a80561ff0002c7ac2203f12d",
+        "observedReads": {}
+      },
+      {
+        "id": "revoked-consent",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:001652afa25ee46bad7b827564af560dbde4d94e5666e9cfad465c1c430186cf",
+        "observedReads": {}
+      },
+      {
+        "id": "expired-consent",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:632acd437fed466bf08dee7014285f8c0648648d55bae6f529020f429a30b79f",
+        "observedReads": {}
+      },
+      {
+        "id": "policy-version-mismatch",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:6cc20a5ae33707da3b1ca3b4fdcd1960f96f4a2576ff25716832a01601a084d3",
+        "observedReads": {}
+      },
+      {
+        "id": "tampered-manifest",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:8c647def74ed308a49de6d71b25ba9f8c67196a836fcbdc15f078be4aecc3e5a",
+        "observedReads": {}
+      },
+      {
+        "id": "tampered-fhir-version",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:ce5013617b587b351a1c6b14e8a027e7b070bf552e2115dcd5342d17ad47af02",
+        "observedReads": {}
+      },
+      {
+        "id": "certificate-token-mismatch",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:ba6081981bb81543cccafdb0ad4197384ceec56539c60056cceb05c1fa745caa",
+        "observedReads": {}
+      },
+      {
+        "id": "assertion-replay",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:324ef1a1d34b36e51fb6c92f5f13bf359b98ac317a99290cb0c9f3b3d4c6cec3",
+        "observedReads": {}
+      },
+      {
+        "id": "handoff-replay",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:195bddcde656a558a3e3c83db34a3c36b1a8d91e65392b988c3b25172954e951",
+        "observedReads": {}
+      },
+      {
+        "id": "blockchain-unavailable",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:767ec2fd5496091d51be265cc2809b343cfe011964c91e09cf82f54f547601b4",
+        "observedReads": {}
+      },
+      {
+        "id": "metadata-postgres-unavailable",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "REQUESTING_INSTITUTION_HTTP_503:AUDIT_UNAVAILABLE",
+        "responseHash": "sha256:6f42ab84ee8afa81e9f1c4cd317f91fe15044016d3d71f6ca8c36a62424b7fbd",
+        "observedReads": {}
+      }
+    ],
+    "evidence": {
+      "liveServices": false,
+      "realOidc": false,
+      "realMtls": false,
+      "realUdap": false,
+      "persistentBesu": false,
+      "persistentPostgres": false,
+      "hapiFhir": false
+    },
+    "limitations": [
+      "The live E2E did not execute because a required local dependency was unavailable.",
+      "No authorization result, clinical response or local timing was fabricated."
+    ]
+  }
+}

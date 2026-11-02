@@ -1,0 +1,108 @@
+services:
+  besu-hospital-a-validator:
+    image: hyperledger/besu:26.5.0@sha256:f1dad21871b49bf54fce2a8c547d96cb7835005343af02eebd72da137723c3bc
+    command:
+      - "--config-file=/config/config.toml"
+    volumes:
+      - ./.local/besu/genesis.json:/config/genesis.json:ro
+      - ./.local/besu/validators/hospital-a/config.toml:/config/config.toml:ro
+      - ./.local/besu/validators/hospital-a/permissions.toml:/config/permissions.toml:ro
+      - ./.local/besu/validators/hospital-a/key:/data/key:ro
+      - besu-hospital-a-data:/data
+    ports:
+      - target: 8545
+        published: ${INTERFHIR_BESU_RPC_HOST_PORT:-8546}
+        protocol: tcp
+        mode: host
+        host_ip: 127.0.0.1
+    networks:
+      besu-qbft:
+        ipv4_address: ${INTERFHIR_BESU_HOSPITAL_A_IP:-172.30.0.10}
+      institutional-blockchain: null
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  besu-clinic-b-validator:
+    image: hyperledger/besu:26.5.0@sha256:f1dad21871b49bf54fce2a8c547d96cb7835005343af02eebd72da137723c3bc
+    command:
+      - "--config-file=/config/config.toml"
+    volumes:
+      - ./.local/besu/genesis.json:/config/genesis.json:ro
+      - ./.local/besu/validators/clinic-b/config.toml:/config/config.toml:ro
+      - ./.local/besu/validators/clinic-b/permissions.toml:/config/permissions.toml:ro
+      - ./.local/besu/validators/clinic-b/key:/data/key:ro
+      - besu-clinic-b-data:/data
+    networks:
+      besu-qbft:
+        ipv4_address: ${INTERFHIR_BESU_CLINIC_B_IP:-172.30.0.11}
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  besu-auditor-validator:
+    image: hyperledger/besu:26.5.0@sha256:f1dad21871b49bf54fce2a8c547d96cb7835005343af02eebd72da137723c3bc
+    command:
+      - "--config-file=/config/config.toml"
+    volumes:
+      - ./.local/besu/genesis.json:/config/genesis.json:ro
+      - ./.local/besu/validators/auditor/config.toml:/config/config.toml:ro
+      - ./.local/besu/validators/auditor/permissions.toml:/config/permissions.toml:ro
+      - ./.local/besu/validators/auditor/key:/data/key:ro
+      - besu-auditor-data:/data
+    networks:
+      besu-qbft:
+        ipv4_address: ${INTERFHIR_BESU_AUDITOR_IP:-172.30.0.12}
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  besu-consortium-validator:
+    image: hyperledger/besu:26.5.0@sha256:f1dad21871b49bf54fce2a8c547d96cb7835005343af02eebd72da137723c3bc
+    command:
+      - "--config-file=/config/config.toml"
+    volumes:
+      - ./.local/besu/genesis.json:/config/genesis.json:ro
+      - ./.local/besu/validators/consortium/config.toml:/config/config.toml:ro
+      - ./.local/besu/validators/consortium/permissions.toml:/config/permissions.toml:ro
+      - ./.local/besu/validators/consortium/key:/data/key:ro
+      - besu-consortium-data:/data
+    networks:
+      besu-qbft:
+        ipv4_address: ${INTERFHIR_BESU_CONSORTIUM_IP:-172.30.0.13}
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+networks:
+  besu-qbft:
+    name: ${INTERFHIR_PROJECT_NAME}-besu-qbft
+    ipam:
+      config:
+        - subnet: ${INTERFHIR_BESU_SUBNET:-172.30.0.0/24}
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  institutional-blockchain:
+    name: ${INTERFHIR_PROJECT_NAME}-institutional-blockchain
+    driver: bridge
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+volumes:
+  besu-hospital-a-data:
+    name: ${INTERFHIR_PROJECT_NAME}-besu-hospital-a-data
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  besu-clinic-b-data:
+    name: ${INTERFHIR_PROJECT_NAME}-besu-clinic-b-data
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  besu-auditor-data:
+    name: ${INTERFHIR_PROJECT_NAME}-besu-auditor-data
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}
+  besu-consortium-data:
+    name: ${INTERFHIR_PROJECT_NAME}-besu-consortium-data
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}

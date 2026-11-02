@@ -1,0 +1,49 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:organization-clinic-b",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "clinic-b",
+        "name": "Clínica B"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Organization/clinic-b"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-bruno",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "bruno",
+        "name": [
+          {
+            "use": "official",
+            "family": "Lima",
+            "given": ["Bruno"]
+          }
+        ],
+        "qualification": [
+          {
+            "identifier": [
+              {
+                "system": "https://interfhir.local/licenses/crm",
+                "value": "CRM-CLINIC-B-001"
+              }
+            ],
+            "code": {
+              "text": "Physician"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner/bruno"
+      }
+    }
+  ]
+}

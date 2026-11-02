@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-10-15T18:00:52.3037382Z",
+  "nodeVersion": "v24.10.0",
+  "dockerVersion": "28.5.1",
+  "composeVersion": "2.40.0-desktop.1",
+  "dockerCpuCount": "8",
+  "dockerMemoryBytes": "8212664320",
+  "operatingSystem": {
+    "Caption": "Microsoft Windows 11 Home Single Language",
+    "Version": "10.0.26200"
+  },
+  "cpu": {
+    "Name": "11th Gen Intel(R) Core(TM) i5-11300H @ 3.10GHz",
+    "NumberOfCores": 4,
+    "NumberOfLogicalProcessors": 8
+  },
+  "physicalMemoryBytes": 16952647680,
+  "subnet": "172.31.240.0/24",
+  "cleanState": false
+}

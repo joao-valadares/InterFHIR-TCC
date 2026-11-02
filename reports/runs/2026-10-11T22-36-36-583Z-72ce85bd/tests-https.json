@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 2,
+  "runId": "2026-10-11T22-36-36-583Z-72ce85bd",
+  "recordedAt": "2026-10-11T22:36:36.587Z",
+  "source": {
+    "revision": "7511a558c97170f5b6fcb51558e5813480216767",
+    "dirty": true,
+    "sourceHash": "b68b7229969f92caf46080fd9c3b83c2f8ff0ca17dbb50567e93abd056c1ee70",
+    "nodeVersion": "v24.10.0",
+    "platform": "win32"
+  },
+  "report": {
+    "status": "passed",
+    "category": "https",
+    "command": [
+      "node",
+      "scripts/run-hardhat.cjs",
+      "test",
+      "--no-compile",
+      "middleware/test/certificate-identity.test.ts",
+      "middleware/test/http-authentication.test.ts",
+      "middleware/test/udap-interinstitutional-scenario-report.test.ts"
+    ],
+    "durationMs": 3385,
+    "files": [
+      "middleware/test/certificate-identity.test.ts",
+      "middleware/test/http-authentication.test.ts",
+      "middleware/test/udap-interinstitutional-scenario-report.test.ts"
+    ],
+    "sourceBefore": "b68b7229969f92caf46080fd9c3b83c2f8ff0ca17dbb50567e93abd056c1ee70",
+    "sourceAfter": "b68b7229969f92caf46080fd9c3b83c2f8ff0ca17dbb50567e93abd056c1ee70",
+    "cases": [
+      {
+        "file": "middleware/test/certificate-identity.test.ts",
+        "title": "Institutional certificate identity accepts a current certificate for the registered institution",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/certificate-identity.test.ts",
+        "title": "Institutional certificate identity rejects expired and organization-mismatched certificate identities",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/http-authentication.test.ts",
+        "title": "Bearer authentication over the local HTTP API accepts the Clinic B certificate and rejects a connection without a client certificate",
+        "status": "passed",
+        "durationMs": 143
+      },
+      {
+        "file": "middleware/test/http-authentication.test.ts",
+        "title": "Bearer authentication over the local HTTP API accepts a valid token, rejects a missing token and blocks direct FHIR access",
+        "status": "passed",
+        "durationMs": 64
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report requires the complete unique mandatory scenario catalog",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report rejects a negative scenario that exposes clinical payload fields",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report calculates local timing statistics without treating them as production capacity",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report keeps a source-file reference blocked without an executed case at the current source revision",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report refuses performance measurements of unexecuted evidence",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report keeps the gate closed until live UDAP coverage is produced",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report executes the six baseline scenarios through the local mTLS UDAP gateway",
+        "status": "passed",
+        "durationMs": 200
+      }
+    ],
+    "stats": {
+      "passes": 11,
+      "failures": 0,
+      "pending": 0
+    }
+  }
+}

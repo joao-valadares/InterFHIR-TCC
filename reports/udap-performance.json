@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-01T12:59:26.241Z",
+  "executionMode": "environment-blocked",
+  "localTimingIsNotProductionCapacityClaim": true,
+  "measurements": {
+    "liveHttpBaseline": {
+      "scope": "not-measured",
+      "requiredRepetitions": 30,
+      "configuredRepetitions": 30,
+      "completedRepetitions": 0,
+      "attemptedRepetitions": 0,
+      "failedAttempts": 0,
+      "components": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      }
+    },
+    "unitInvariantValidation": {
+      "scope": "unit-evidence-report-invariants",
+      "requiredRepetitions": 30,
+      "completedRepetitions": 30,
+      "total": {
+        "count": 30,
+        "minMs": 0.0093,
+        "medianMs": 0.0187,
+        "p95Ms": 0.1116,
+        "maxMs": 0.2191,
+        "stddevMs": 0.040200838714302134
+      }
+    }
+  },
+  "deliveryGate": {
+    "approved": false,
+    "requirements": {
+      "exactScenarioCatalog": true,
+      "sixLiveBaselineScenarios": false,
+      "nineteenUnitEvidenceScenarios": true,
+      "noBlockedScenarios": false,
+      "negativePayloadAbsent": true,
+      "thirtyLiveRepetitions": false,
+      "thirtyUnitInvariantRepetitions": true
+    }
+  },
+  "gas": null,
+  "observation": "FHIR metadata unavailable",
+  "limitations": [
+    "No local timing is a production capacity or throughput claim.",
+    "Unit-invariant timing measures local report/evidence validation only and is not HTTP latency.",
+    "The live harness uses synthetic institutional certificates and in-memory UDAP/manifest state; it validates the application boundary, not production capacity.",
+    "The delivery gate remains rejected unless 6 live scenarios, 19 unit-evidenced scenarios, no blocked scenarios, and both 30-repetition requirements are satisfied."
+  ]
+}

@@ -1,0 +1,12 @@
+import { existsSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { applyRuntimeEnvironment, assertOwnedResources, composeArguments, validateProjectRoot } from "./runtime-environment.js";
+const action = process.argv[2];
+if (!["config", "stop", "reset", "restart"].includes(action)) throw new Error("RUNTIME_ACTION_INVALID");
+if (action === "reset" && !process.argv.includes("--discard-data")) throw new Error("RESET_REQUIRES_EXPLICIT_DISCARD_DATA");
+const root = validateProjectRoot();
+applyRuntimeEnvironment(root);
+assertOwnedResources(root);
+const args = action === "reset" ? ["down", "--volumes"] : [action];
+const result = spawnSync("docker", [...composeArguments(root), ...(existsSync(".local/e2e/compose.env") ? ["--env-file", ".local/e2e/compose.env"] : []), ...args], { stdio: "inherit", windowsHide: true });
+process.exitCode = result.status ?? 1;

@@ -1,0 +1,5 @@
+services:
+  hospital-a-gateway:
+    command: ["node", "scripts/run-hardhat.cjs", "run", "scripts/e2e/start-policy-variation-gateway.ts"]
+  clinic-b-gateway:
+    command: ["node", "scripts/run-hardhat.cjs", "run", "scripts/e2e/start-policy-variation-gateway.ts"]

@@ -1,0 +1,24 @@
+{
+  "sourceRevision": "f9f6a1a56644fc3280923e695c207a0ec52a85c5",
+  "sourceHash": "174afe7b10fd6f2b92348bce6a71c1e238081740c0bf4a2bf389821f37675a67",
+  "collectionDate": "2026-11-01",
+  "fullCommand": "npm audit --json",
+  "fullVulnerabilities": {
+    "info": 0,
+    "low": 9,
+    "moderate": 6,
+    "high": 19,
+    "critical": 0,
+    "total": 34
+  },
+  "productionOnlyCommand": "npm audit --omit=dev --json",
+  "productionOnlyVulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "limitation": "Gateway installs and runs development tools, including Hardhat. The omit-dev result does not cover the complete gateway image. No forced dependency update or complete container-image vulnerability audit was performed."
+}

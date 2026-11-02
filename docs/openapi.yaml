@@ -1,0 +1,731 @@
+openapi: 3.1.0
+info:
+  title: InterFHIR consent-centered gateway API
+  version: 0.1.0
+  description: >-
+    Contract for the local FHIR-only proof of concept. Clinical data is returned
+    only by an authorized institutional read; every denial uses ErrorResponse
+    without clinical payload, FHIR locator or storage pointer.
+servers:
+  - url: https://localhost:3001
+    description: Hospital A local gateway (development TLS)
+security: []
+paths:
+  /health:
+    get:
+      operationId: health
+      responses:
+        "200":
+          description: All configured dependencies are ready.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+        "503":
+          description: FHIR, blockchain or manifest storage is unavailable; the body is the same health status shape with unavailable values.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+  /fhir/.well-known/udap:
+    get:
+      operationId: udapDiscovery
+      description: >-
+        Advertises the custodian's institutional authentication endpoints. Clients
+        must verify signed_metadata using previously configured trusted keys and
+        compare issuer, validity and signed endpoints before using them. Discovery
+        alone neither registers a client nor authorizes a clinical read.
+      responses:
+        "200":
+          description: UDAP discovery metadata.
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /.well-known/udap/jwks.json:
+    get:
+      operationId: udapIssuerJwks
+      responses:
+        "200":
+          description: Public Hospital A issuer JWKS only.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "503":
+          $ref: "#/components/responses/Unavailable"
+  /udap/register:
+    post:
+      operationId: udapDynamicRegistration
+      description: >-
+        Validates a signed software statement against configured trusted keys,
+        binds the client to the requesting institution and certificate, and
+        persists its public keys, allowed scopes and replay protection. This is
+        application registration, not practitioner enrollment or patient consent.
+      security:
+        - mutualTLS: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UdapRegistrationRequest"
+            example:
+              software_statement: "<signed-software-statement-jws>"
+      responses:
+        "201":
+          description: Registered client binding.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UdapRegistrationResponse"
+        "401":
+          $ref: "#/components/responses/MtlsRequired"
+        "400":
+          $ref: "#/components/responses/Denied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "403":
+          $ref: "#/components/responses/Denied"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "500":
+          $ref: "#/components/responses/InternalError"
+  /udap/token:
+    post:
+      operationId: udapToken
+      description: >-
+        Authenticates the registered software using a fresh private_key_jwt
+        assertion and the matching mTLS certificate. The token carries the
+        institutionally declared practitioner and purposes. Token issuance does
+        not evaluate a particular share, manifest or patient Consent; those
+        checks occur during institutional access.
+      security:
+        - mutualTLS: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/UdapTokenRequest"
+      responses:
+        "200":
+          description: Certificate-bound bearer access token.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UdapTokenResponse"
+        "401":
+          $ref: "#/components/responses/MtlsRequired"
+        "400":
+          $ref: "#/components/responses/Denied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "403":
+          $ref: "#/components/responses/Denied"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "500":
+          $ref: "#/components/responses/InternalError"
+  /patient/consents:
+    post:
+      operationId: createPatientConsent
+      description: >-
+        Derives the patient from the verified OIDC principal and validates the
+        requested scope. Coordinates FHIR Consent persistence, its blockchain
+        projection, a share, a signed anchored manifest and resource integrity.
+        Returns active only after creation completes. The handoff is a secret
+        one-time redemption code, not a clinical access token. Recovery is staged,
+        not a distributed atomic transaction; an active result whose cleartext
+        handoff is no longer in process memory cannot be reissued after restart.
+      security:
+        - oidcBearer: []
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatientConsentCreateRequest"
+            example:
+              granteeOrganizationReference: "Organization/clinic-b"
+              practitionerReference: "Practitioner/bruno"
+              resourceReference: "Observation/obs-ana-1"
+              purposeOfUse: "TREAT"
+              policyId: "POLICY_TREATMENT_OBSERVATION"
+              policyVersion: 1
+              validUntil: "2026-08-30T23:59:59.000Z"
+      responses:
+        "201":
+          description: FHIR Consent, chain projection, grant and manifest are active.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientConsentCreateResponse"
+        "400":
+          $ref: "#/components/responses/Denied"
+        "401":
+          $ref: "#/components/responses/AuthenticationRequired"
+        "403":
+          $ref: "#/components/responses/Denied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "503":
+          $ref: "#/components/responses/Unavailable"
+        "500":
+          $ref: "#/components/responses/InternalError"
+  /patient/consents/{consentReference}/revoke:
+    post:
+      operationId: revokePatientConsent
+      description: >-
+        Requires the authenticated patient to own the Consent operation. Revokes
+        the authorization and derived sharing state across FHIR, blockchain and
+        local metadata. It prevents subsequent release but cannot retract bytes
+        already received by a remote client. Encode the Consent reference when
+        placing it in the path segment.
+      security:
+        - oidcBearer: []
+      parameters:
+        - name: consentReference
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Consent and derived grant are revoked.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PatientConsentRevokeResponse"
+        "401":
+          $ref: "#/components/responses/AuthenticationRequired"
+        "403":
+          $ref: "#/components/responses/Denied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "400":
+          $ref: "#/components/responses/Denied"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "500":
+          $ref: "#/components/responses/InternalError"
+        "503":
+          $ref: "#/components/responses/Unavailable"
+  /interfhir/v1/shares/redeem:
+    post:
+      operationId: redeemOneTimeHandoff
+      description: >-
+        Requires an institutional token bound to the presented certificate.
+        Checks the recipient and validity, then atomically marks the handoff
+        redeemed in metadata storage. Returns discovery identifiers only. A
+        successful redemption is necessary but not sufficient for clinical read
+        authorization, and a consumed handoff cannot be redeemed again.
+      security:
+        - udapBearer: []
+          mutualTLS: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ShareRedeemRequest"
+            example:
+              handoffCode: "<opaque-one-time-handoff-code>"
+      responses:
+        "200":
+          description: Opaque share and active manifest summary; no clinical resource is returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ShareRedeemResponse"
+        "401":
+          $ref: "#/components/responses/AuthenticationRequired"
+        "403":
+          $ref: "#/components/responses/Denied"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "400":
+          $ref: "#/components/responses/Denied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+        "503":
+          $ref: "#/components/responses/Unavailable"
+  /interfhir/v1/shares/{shareId}:
+    get:
+      operationId: getShareSummary
+      description: >-
+        Returns the active recipient share summary only after handoff redemption.
+        Does not expose the full internal signed manifest or clinical resource.
+        A successful summary lookup is not a blockchain access decision.
+      security:
+        - udapBearer: []
+          mutualTLS: []
+      parameters:
+        - name: shareId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Opaque share summary and manifest identifiers.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ShareRedeemResponse"
+        "401":
+          $ref: "#/components/responses/AuthenticationRequired"
+        "403":
+          $ref: "#/components/responses/Denied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "400":
+          $ref: "#/components/responses/Denied"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "500":
+          $ref: "#/components/responses/InternalError"
+        "503":
+          $ref: "#/components/responses/Unavailable"
+  /interfhir/v1/access/read:
+    post:
+      operationId: readAuthorizedShare
+      description: >-
+        Requires redeemed handoff. Practitioner and organization come from the
+        verified certificate-bound UDAP token; the clinical locator and version
+        come from the stored manifest, not from caller-supplied identity fields.
+        Clinical delivery occurs only after mandatory FHIR audit, confirmed
+        blockchain finalization and refreshed authorization checks. requestId
+        correlates observations; it is not the creation Idempotency-Key and does
+        not promise idempotent reads. A denial returns ErrorResponse without the
+        resource. A finalization event alone does not prove remote receipt.
+      security:
+        - udapBearer: []
+          mutualTLS: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InterFHIRReadRequest"
+            example:
+              shareId: "<opaque-share-id>"
+              manifestId: "<opaque-manifest-id>"
+              operation: "read"
+              purposeOfUse: "TREAT"
+              requestId: "req_11111111-1111-4111-8111-111111111111"
+      responses:
+        "200":
+          description: Manifest metadata plus the immutable authorized FHIR vread after mandatory auditing. There is no pending-audit success.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: "#/components/schemas/InterFHIRReadResponse"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InterFHIRReadResponse"
+        "413":
+          description: Request body exceeds 1 MiB.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "408":
+          description: Request body was not received within 30 seconds.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          $ref: "#/components/responses/AuthenticationRequired"
+        "403":
+          $ref: "#/components/responses/Denied"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "400":
+          $ref: "#/components/responses/Denied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+        "503":
+          $ref: "#/components/responses/Unavailable"
+  /patient/shares:
+    post:
+      deprecated: true
+      operationId: retiredPatientShares
+      responses:
+        "410":
+          description: Legacy patient-share creation is disabled.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error: "LEGACY_PATIENT_SHARE_ROUTE_DISABLED"
+  /access/read:
+    post:
+      deprecated: true
+      operationId: retiredAccessRead
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyRead"
+  /access/read-manifest:
+    post:
+      deprecated: true
+      operationId: retiredAccessReadManifest
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyRead"
+  /fhir/{path}:
+    parameters:
+      - name: path
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: blockedDirectFhirGet
+      responses:
+        "403":
+          $ref: "#/components/responses/FhirBlocked"
+    post:
+      operationId: blockedDirectFhirPost
+      responses:
+        "403":
+          $ref: "#/components/responses/FhirBlocked"
+  /setup/demo/participants:
+    post:
+      deprecated: true
+      operationId: retiredDemoParticipants
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyAdmin"
+  /setup/demo/policy:
+    post:
+      deprecated: true
+      operationId: retiredDemoPolicy
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyAdmin"
+  /policies/register:
+    post:
+      deprecated: true
+      operationId: retiredPolicyRegistration
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyAdmin"
+  /resources/register-hash:
+    post:
+      deprecated: true
+      operationId: retiredResourceHash
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyAdmin"
+  /manifests/publish:
+    post:
+      deprecated: true
+      operationId: retiredManifestPublish
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyAdmin"
+  /manifests/revoke:
+    post:
+      deprecated: true
+      operationId: retiredManifestRevoke
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyAdmin"
+  /consents/register:
+    post:
+      deprecated: true
+      operationId: retiredConsentRegistration
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyAdmin"
+  /consents/revoke:
+    post:
+      deprecated: true
+      operationId: retiredConsentRevoke
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyAdmin"
+  /manifests/{manifestId}:
+    get:
+      deprecated: true
+      operationId: retiredManifestRead
+      parameters:
+        - name: manifestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "410":
+          $ref: "#/components/responses/LegacyAdmin"
+components:
+  securitySchemes:
+    oidcBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OIDC/Keycloak human identity. It authenticates a role; it does not grant clinical access.
+    udapBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: UDAP access token bound by cnf.x5t#S256 to the mTLS client certificate.
+    mutualTLS:
+      type: mutualTLS
+      description: Local PKI certificate identifies the requesting institution and is required for UDAP endpoints.
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        pattern: "^[A-Za-z0-9._:-]{1,128}$"
+  responses:
+    AuthenticationRequired:
+      description: Authentication or certificate is missing/invalid.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error: "AUTHENTICATION_REQUIRED"
+    MtlsRequired:
+      description: Client certificate is required.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error: "MTLS_CERTIFICATE_REQUIRED"
+    Denied:
+      description: Authorization denied; no clinical payload, FHIR locator or pointer is returned.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error: "MANIFEST_COMMITMENT_MISMATCH"
+    Conflict:
+      description: State, replay or integrity conflict; no clinical payload is returned.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error: "MANIFEST_COMMITMENT_MISMATCH"
+    Unavailable:
+      description: Required dependency is unavailable; no clinical payload is returned. Includes AUDIT_UNAVAILABLE, BLOCKCHAIN_UNAVAILABLE and RELEASE_REVALIDATION_UNAVAILABLE.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error: "BLOCKCHAIN_UNAVAILABLE"
+    InternalError:
+      description: Unexpected gateway failure; no clinical payload is returned.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error: "INTERNAL_ERROR"
+    NotFound:
+      description: Opaque resource or Consent operation was not found.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error: "RESOURCE_NOT_FOUND"
+    LegacyRead:
+      description: Retired legacy read route; it does not dispatch to a reader.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error: "LEGACY_READ_ROUTE_DISABLED"
+    FhirBlocked:
+      description: Direct FHIR gateway access is blocked.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error: "FHIR_DIRECT_ACCESS_BLOCKED"
+    LegacyAdmin:
+      description: Generic administrative route retained only as an explicit retired boundary.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error: "LEGACY_ADMIN_ROUTE_DISABLED"
+  schemas:
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+        field:
+          type: string
+      additionalProperties: false
+      description: Error responses contain no clinical payload, FHIR locator or storage pointer.
+    HealthResponse:
+      type: object
+      required: [status, fhir, blockchain]
+      properties:
+        status:
+          type: string
+          enum: [ok, unavailable]
+        fhir:
+          type: string
+        blockchain:
+          type: string
+        manifests:
+          type: string
+    PatientConsentCreateRequest:
+      type: object
+      required: [granteeOrganizationReference, resourceReference, purposeOfUse, policyId, policyVersion, validUntil]
+      additionalProperties: false
+      properties:
+        granteeOrganizationReference:
+          type: string
+        practitionerReference:
+          type: string
+        resourceReference:
+          type: string
+        purposeOfUse:
+          type: string
+        policyId:
+          type: string
+        policyVersion:
+          type: integer
+          minimum: 1
+        validUntil:
+          type: string
+          format: date-time
+      description: Patient identity, raw consent hash and FHIR resource body are intentionally absent.
+    PatientConsentCreateResponse:
+      type: object
+      required: [operationId, consentReference, consentVersion, consentHash, policyId, policyVersion, shareId, manifestId, handoffCode, status]
+      properties:
+        operationId: { type: string }
+        consentReference: { type: string }
+        consentVersion: { type: string }
+        consentHash: { type: string }
+        policyId: { type: string }
+        policyVersion: { type: integer }
+        shareId: { type: string }
+        manifestId: { type: string }
+        handoffCode: { type: string }
+        status: { type: string, enum: [active] }
+    PatientConsentRevokeResponse:
+      type: object
+      required: [operationId, consentReference, consentVersion, shareId, manifestIds, status]
+      properties:
+        operationId: { type: string }
+        consentReference: { type: string }
+        consentVersion: { type: string }
+        shareId: { type: string }
+        manifestIds:
+          type: array
+          items: { type: string }
+        status: { type: string, enum: [revoked] }
+    ShareRedeemRequest:
+      type: object
+      required: [handoffCode]
+      additionalProperties: false
+      properties:
+        handoffCode: { type: string }
+    ShareRedeemResponse:
+      type: object
+      required: [shareId, manifests, validUntil]
+      properties:
+        shareId: { type: string }
+        manifests:
+          type: array
+          items:
+            type: object
+            required: [manifestId, resourceType]
+            properties:
+              manifestId: { type: string }
+              resourceType: { type: string }
+        validUntil: { type: string, format: date-time }
+      description: Contains opaque identifiers only; no clinical payload or FHIR locator.
+    InterFHIRReadRequest:
+      type: object
+      required: [shareId, manifestId, operation, purposeOfUse, requestId]
+      additionalProperties: false
+      properties:
+        shareId: { type: string }
+        manifestId: { type: string }
+        operation: { type: string, enum: [read] }
+        purposeOfUse: { type: string }
+        requestId: { type: string, pattern: "^req_[0-9a-f-]{36}$" }
+    InterFHIRReadResponse:
+      type: object
+      required: [manifest, resource]
+      properties:
+        manifest:
+          type: object
+          required: [manifestId, shareId, resourceReference, fhirVersionId, custodianOrganizationReference]
+          properties:
+            manifestId: { type: string }
+            shareId: { type: string }
+            resourceReference: { type: string }
+            fhirVersionId: { type: string }
+            custodianOrganizationReference: { type: string }
+        resource:
+          type: object
+          required: [resourceType, id, meta]
+          description: Returned only after all checks pass; not present in any error response.
+          properties:
+            resourceType: { type: string }
+            id: { type: string }
+            meta:
+              type: object
+              required: [versionId]
+              properties:
+                versionId: { type: string }
+          additionalProperties: true
+    UdapRegistrationRequest:
+      type: object
+      required: [software_statement]
+      properties:
+        software_statement: { type: string }
+    UdapRegistrationResponse:
+      type: object
+      required: [client_id, organizationReference]
+      properties:
+        client_id: { type: string }
+        organizationReference: { type: string }
+    UdapTokenRequest:
+      type: object
+      required: [grant_type, scope, client_assertion_type, client_assertion, udap]
+      properties:
+        grant_type: { type: string, enum: [client_credentials] }
+        scope: { type: string }
+        client_assertion_type: { type: string }
+        client_assertion: { type: string }
+        udap: { type: string, enum: ["1"] }
+    UdapTokenResponse:
+      type: object
+      required: [access_token, token_type, expires_in, assertionHash, claims]
+      properties:
+        access_token: { type: string }
+        token_type: { type: string, enum: [Bearer] }
+        expires_in: { type: integer }
+        assertionHash: { type: string }
+        claims:
+          type: object
+          additionalProperties: true

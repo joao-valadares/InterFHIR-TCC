@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-31",
+  "scope": "InteropChain FHIR-only UDAP/ABAC PoC",
+  "status": "partially-validated",
+  "commands": [
+    { "command": "npm run compile", "status": "passed" },
+    { "command": "npm run typecheck", "status": "passed" },
+    { "command": "npm run test:contracts", "status": "passed", "tests": 34 },
+    { "command": "npm run test:middleware", "status": "passed", "tests": 126 },
+    { "command": "npm run test:gas", "status": "passed", "tests": 34 },
+    { "command": "npm run test:manifest:postgres", "status": "blocked", "reason": "PostgreSQL local indisponível/sem handshake; execução atingiu timeout de 120 s" },
+    { "command": "npm run scenarios:udap-interinstitutional", "status": "passed", "scenarios": { "total": 25, "unitEvidence": 19, "blocked": 6, "live": 0 }, "deliveryGateApproved": false },
+    { "command": "docker compose -f docker-compose.yml -f docker-compose.dev.yml config --quiet", "status": "passed" }
+  ],
+  "securityChecks": {
+    "clinicalDataOnChain": false,
+    "ipfsLikeContentStore": false,
+    "directFhirRoute": "blocked",
+    "manifestFirstRead": true,
+    "negativePayloadInvariant": true
+  },
+  "cleanup": {
+    "removed": [
+      "tcc", "docs", "deliverables", "results", "scripts.OLD", "smart-contracts",
+      "truffle-test", "tests", "tmp", "util", "bin", "demo-api",
+      "session/phase/legacy scenario scripts and reports", "ContentStore/IPFS-like source and tests"
+    ],
+    "preserved": [
+      "contracts", "middleware", "fixtures/fhir", "infra/keycloak", "docker",
+      "scripts required by the current runtime", "current tests", "current JSON evidence",
+      ".git", "node_modules", ".local"
+    ]
+  },
+  "notes": [
+    "A evidência de 19 cenários unitários não é apresentada como latência HTTP live.",
+    "O gate de desempenho permanece fechado até existir harness UDAP live com 6 cenários e 30 repetições.",
+    "O PostgreSQL não foi apagado nesta limpeza; somente o caminho legado ContentStore e seu serviço Compose foram removidos."
+  ]
+}

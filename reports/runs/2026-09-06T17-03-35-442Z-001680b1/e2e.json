@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 2,
+  "runId": "2026-09-06T17-03-35-442Z-001680b1",
+  "recordedAt": "2026-09-06T17:03:35.443Z",
+  "source": {
+    "revision": "49cdc8b348edcbec4cf95e8a53225e6dadad435c",
+    "dirty": true,
+    "sourceHash": "33153a8129fab5420082426aa42a6e14a14d6aa94a75fb607a7de451094a59ff",
+    "nodeVersion": "v24.10.0",
+    "platform": "win32"
+  },
+  "report": {
+    "schemaVersion": 2,
+    "generatedAt": "2026-09-06T17:03:35.439Z",
+    "executionMode": "failed",
+    "readiness": [
+      {
+        "service": "keycloak",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-oidc",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-oidc",
+        "status": "ok"
+      },
+      {
+        "service": "institutional-identity-network",
+        "status": "ok"
+      },
+      {
+        "service": "institutional-blockchain-network",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-fhir",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-fhir",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-metadata-postgres",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-metadata-postgres",
+        "status": "ok"
+      },
+      {
+        "service": "besu-hospital-a-validator",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-jwks",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-jwks",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-udap",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-gateway",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-udap-requester",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-gateway",
+        "status": "ok"
+      }
+    ],
+    "summary": {
+      "total": 14,
+      "passed": 0,
+      "failed": 0,
+      "blocked": 14
+    },
+    "scenarios": [
+      {
+        "id": "authorized-consent-read",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:d51c1de6b10dc33e6dd1e9b9f0bd2ac41a80947207ba3e7b17b97fb83af40f17",
+        "observedReads": {}
+      },
+      {
+        "id": "wrong-organization",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:92e859c41bb8831ee3cb9afa3e58df9ffe955d22d6128b79036fe2dd376844dd",
+        "observedReads": {}
+      },
+      {
+        "id": "wrong-practitioner",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:5a4e54bea771404dcd657e064300bd2f46db8bb537dfd17a5123722fa8d9ba02",
+        "observedReads": {}
+      },
+      {
+        "id": "purpose-mismatch",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:8279e84e71c4baee3aabca1e56b8f63b7c291e7b9e603d850c24ac0602ad1ad9",
+        "observedReads": {}
+      },
+      {
+        "id": "revoked-consent",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:d7d907fbe112bda739b7a381dd3d5ece9b08f641361edecf248c9b6f5e3ebebb",
+        "observedReads": {}
+      },
+      {
+        "id": "expired-consent",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:79bd024f49a5486e60d42f640afc56cab8c328e81c316e7d20d31186e9a5a715",
+        "observedReads": {}
+      },
+      {
+        "id": "policy-version-mismatch",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:4747ba4131e2c8cb1cf9f87322a3095d9d96e620f7385c3d51b659dd6fa37a08",
+        "observedReads": {}
+      },
+      {
+        "id": "tampered-manifest",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:cc7fb36052ab6e246b068c27df1fcd78f33c5fb51a16c6296c091abf40c28050",
+        "observedReads": {}
+      },
+      {
+        "id": "tampered-fhir-version",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:43be8a15b16d34aed5a502020625d53e27f53af10107fc09f5044accb5f4bb71",
+        "observedReads": {}
+      },
+      {
+        "id": "certificate-token-mismatch",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:cceec2832207f2a0489d869844869e23624d882a316423db57f4b39998f68d31",
+        "observedReads": {}
+      },
+      {
+        "id": "assertion-replay",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:6cad150f4180ba8e01b7f3e594bb4890b8ea721693caca11118f246d79953a33",
+        "observedReads": {}
+      },
+      {
+        "id": "handoff-replay",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:6fb15dac5380502836eb63ba9b787a230e3636241d657b6a1fd0499e9d8bb17d",
+        "observedReads": {}
+      },
+      {
+        "id": "blockchain-unavailable",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:6546ee067ee3545c1fbab287cb911aa6499bbfa3fd34acc034096657dbf547ae",
+        "observedReads": {}
+      },
+      {
+        "id": "metadata-postgres-unavailable",
+        "status": "blocked",
+        "outcome": "blocked",
+        "dataDelivery": "unknown",
+        "reason": "E2E_NOT_COMPLETED:REQUESTING_INSTITUTION_HTTP_500:REQUEST_ID_INVALID",
+        "responseHash": "sha256:c9f4391dfc7bab95ed99b9c3cc98a8283876bf780a3a5181d4fc65b44b75fc96",
+        "observedReads": {}
+      }
+    ],
+    "evidence": {
+      "liveServices": true,
+      "realOidc": false,
+      "realMtls": false,
+      "realUdap": false,
+      "persistentBesu": false,
+      "persistentPostgres": false,
+      "hapiFhir": false
+    },
+    "limitations": [
+      "The live execution stopped after a non-environment failure; incomplete scenarios remain blocked.",
+      "A failed execution is not a successful end-to-end authorization proof."
+    ]
+  }
+}

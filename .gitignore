@@ -1,0 +1,25 @@
+node_modules/
+artifacts/
+cache/
+typechain-types/
+.hardhat-global/
+bin/
+nodes/
+.vscode
+.worktrees/
+smart-contracts/TESTS/ACL-smart-contract
+smart-contracts/TESTS/rbac-solidity
+reports/interinstitutional-scenarios.json
+reports/interinstitutional-scenarios.md
+.local/
+.local/runtime/
+.env
+.env.*
+!.env.example
+**/*.key
+**/*.crt
+**/*.csr
+**/*.pem
+
+# Local agent workspaces are not project documentation.
+.superpowers/

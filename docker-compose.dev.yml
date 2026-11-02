@@ -1,0 +1,39 @@
+services:
+  hospital-a-metadata-postgres:
+    ports:
+      - 127.0.0.1:${INTERFHIR_HOSPITAL_A_METADATA_HOST_PORT:-5433}:5432
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  clinic-b-metadata-postgres:
+    ports:
+      - 127.0.0.1:${INTERFHIR_CLINIC_B_METADATA_HOST_PORT:-5435}:5432
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  hospital-a-fhir:
+    ports:
+      - 127.0.0.1:${INTERFHIR_HOSPITAL_A_FHIR_HOST_PORT:-8081}:8080
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  clinic-b-fhir:
+    ports:
+      - 127.0.0.1:${INTERFHIR_CLINIC_B_FHIR_HOST_PORT:-8082}:8080
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  hospital-a-gateway:
+    ports:
+      - 127.0.0.1:${INTERFHIR_HOSPITAL_A_GATEWAY_HOST_PORT:-3001}:3000
+      - 127.0.0.1:${INTERFHIR_HOSPITAL_A_PEER_HOST_PORT:-4001}:4000
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+  clinic-b-gateway:
+    ports:
+      - 127.0.0.1:${INTERFHIR_CLINIC_B_GATEWAY_HOST_PORT:-3002}:3000
+      - 127.0.0.1:${INTERFHIR_CLINIC_B_PEER_HOST_PORT:-4002}:4000
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}

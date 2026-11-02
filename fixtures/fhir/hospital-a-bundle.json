@@ -1,0 +1,392 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:organization-hospital-a",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "hospital-a",
+        "name": "Hospital A"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Organization/hospital-a"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:organization-clinic-b-directory-copy",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "clinic-b",
+        "name": "Clínica B"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Organization/clinic-b"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-bruno-directory-copy",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "bruno",
+        "name": [
+          {
+            "use": "official",
+            "family": "Lima",
+            "given": ["Bruno"]
+          }
+        ],
+        "qualification": [
+          {
+            "identifier": [
+              {
+                "system": "https://interfhir.local/licenses/crm",
+                "value": "CRM-CLINIC-B-001"
+              }
+            ],
+            "code": {
+              "text": "Physician"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner/bruno"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:patient-pat-ana",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "pat-ana",
+        "name": [
+          {
+            "use": "official",
+            "family": "Souza",
+            "given": ["Ana"]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1988-05-18",
+        "managingOrganization": {
+          "reference": "Organization/hospital-a"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Patient/pat-ana"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-ana",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "ana",
+        "name": [
+          {
+            "use": "official",
+            "family": "Costa",
+            "given": ["Ana"]
+          }
+        ],
+        "qualification": [
+          {
+            "identifier": [
+              {
+                "system": "https://interfhir.local/licenses/crm",
+                "value": "CRM-HOSP-A-001"
+              }
+            ],
+            "code": {
+              "text": "Physician"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner/ana"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:observation-obs-ana-1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-ana-1",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "85354-9",
+              "display": "Blood pressure panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/pat-ana"
+        },
+        "performer": [
+          {
+            "reference": "Practitioner/ana"
+          },
+          {
+            "reference": "Organization/hospital-a"
+          }
+        ],
+        "effectiveDateTime": "2026-07-27T10:00:00-03:00",
+        "valueQuantity": {
+          "value": 120,
+          "unit": "mmHg",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/obs-ana-1"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:diagnostic-report-report-ana-1",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "report-ana-1",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "58410-2",
+              "display": "Complete blood count panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/pat-ana"
+        },
+        "performer": [
+          {
+            "reference": "Organization/hospital-a"
+          }
+        ],
+        "result": [
+          {
+            "reference": "Observation/obs-ana-1"
+          }
+        ],
+        "effectiveDateTime": "2026-07-27T10:15:00-03:00",
+        "issued": "2026-07-27T10:20:00-03:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "DiagnosticReport/report-ana-1"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:consent-cons-ana-1",
+      "resource": {
+        "resourceType": "Consent",
+        "id": "cons-ana-1",
+        "status": "active",
+        "scope": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/consentscope",
+              "code": "patient-privacy"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                "code": "INFA"
+              }
+            ]
+          }
+        ],
+        "patient": {
+          "reference": "Patient/pat-ana"
+        },
+        "dateTime": "2026-07-27T09:55:00-03:00",
+        "organization": [
+          {
+            "reference": "Organization/hospital-a"
+          }
+        ],
+        "provision": {
+          "type": "permit",
+          "period": {
+            "start": "2026-07-27T00:00:00-03:00",
+            "end": "2027-07-27T23:59:59-03:00"
+          },
+          "actor": [
+            {
+              "role": {
+                "coding": [
+                  {
+                    "code": "performer"
+                  }
+                ]
+              },
+              "reference": {
+                "reference": "Practitioner/ana"
+              }
+            },
+            {
+              "role": {
+                "coding": [
+                  {
+                    "code": "custodian"
+                  }
+                ]
+              },
+              "reference": {
+                "reference": "Organization/hospital-a"
+              }
+            }
+          ],
+          "action": [
+            {
+              "coding": [
+                {
+                  "code": "read"
+                }
+              ]
+            }
+          ],
+          "purpose": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+              "code": "TREAT"
+            }
+          ],
+          "data": [
+            {
+              "reference": {
+                "reference": "Observation/obs-ana-1"
+              }
+            },
+            {
+              "reference": {
+                "reference": "DiagnosticReport/report-ana-1"
+              }
+            }
+          ]
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Consent/cons-ana-1"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:consent-cons-ana-clinic-b",
+      "resource": {
+        "resourceType": "Consent",
+        "id": "cons-ana-clinic-b",
+        "status": "active",
+        "scope": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/consentscope",
+              "code": "patient-privacy"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                "code": "INFA"
+              }
+            ]
+          }
+        ],
+        "patient": {
+          "reference": "Patient/pat-ana"
+        },
+        "dateTime": "2026-07-28T09:00:00-03:00",
+        "organization": [
+          {
+            "reference": "Organization/hospital-a"
+          }
+        ],
+        "provision": {
+          "type": "permit",
+          "period": {
+            "start": "2026-07-28T00:00:00-03:00",
+            "end": "2027-07-28T23:59:59-03:00"
+          },
+          "actor": [
+            {
+              "role": {
+                "coding": [
+                  {
+                    "code": "performer"
+                  }
+                ]
+              },
+              "reference": {
+                "reference": "Practitioner/bruno"
+              }
+            },
+            {
+              "role": {
+                "coding": [
+                  {
+                    "code": "requester-organization"
+                  }
+                ]
+              },
+              "reference": {
+                "reference": "Organization/clinic-b"
+              }
+            }
+          ],
+          "action": [
+            {
+              "coding": [
+                {
+                  "code": "read"
+                }
+              ]
+            }
+          ],
+          "purpose": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+              "code": "TREAT"
+            }
+          ],
+          "class": [
+            {
+              "coding": [
+                {
+                  "code": "Observation"
+                }
+              ]
+            }
+          ],
+          "data": [
+            {
+              "reference": {
+                "reference": "Observation/obs-ana-1"
+              }
+            }
+          ]
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Consent/cons-ana-clinic-b"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.1@sha256:be6a86215213145bfb4fb3e2b3ab982a806d00262655abdcf3ffa6a38d241c7c
+    command: start-dev --import-realm --health-enabled=true
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN_USERNAME:-admin}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-local-development-only}
+      KC_HEALTH_ENABLED: "true"
+      KC_HOSTNAME: ${KEYCLOAK_CONTAINER_HOSTNAME:-http://keycloak:8080}
+      KC_HOSTNAME_STRICT: "false"
+      KC_HTTP_MANAGEMENT_PORT: "9000"
+    volumes:
+      - ./infra/keycloak:/opt/keycloak/data/import:ro
+    ports:
+      - 127.0.0.1:${INTERFHIR_KEYCLOAK_HOST_PORT:-8180}:8080
+      - 127.0.0.1:${INTERFHIR_KEYCLOAK_MANAGEMENT_HOST_PORT:-8190}:9000
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - "bash -c 'exec 3<>/dev/tcp/127.0.0.1/9000 || exit 1; printf \"GET /health/ready HTTP/1.1\\r\\nHost: 127.0.0.1\\r\\nConnection: close\\r\\n\\r\\n\" >&3; IFS= read -r -t 4 status <&3 || exit 1; [[ \"$$status\" == \"HTTP/1.1 200 \"* || \"$$status\" == \"HTTP/1.0 200 \"* ]]'"
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    networks:
+      - institutional-identity
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT:?Use npm run e2e:up}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME:?Use npm run e2e:up}
+networks:
+  institutional-identity:
+    name: ${INTERFHIR_PROJECT_NAME}-institutional-identity
+    labels:
+      org.interfhir.root: ${INTERFHIR_ROOT}
+      org.interfhir.project: ${INTERFHIR_PROJECT_NAME}

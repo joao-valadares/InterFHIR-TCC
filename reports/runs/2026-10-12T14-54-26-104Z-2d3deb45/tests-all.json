@@ -1,0 +1,2646 @@
+{
+  "schemaVersion": 2,
+  "runId": "2026-10-12T14-54-26-104Z-2d3deb45",
+  "recordedAt": "2026-10-12T14:54:26.108Z",
+  "source": {
+    "revision": "8362df5bbc145e15fc66e205777337ccedb815d0",
+    "dirty": true,
+    "sourceHash": "f7b62ac6fff9712cf32364e249e62bbf7b6d23b0b7db331d29b3d38d5105814a",
+    "nodeVersion": "v24.10.0",
+    "platform": "win32"
+  },
+  "report": {
+    "status": "passed",
+    "category": "all",
+    "command": [
+      "node",
+      "scripts/run-hardhat.cjs",
+      "test",
+      "--no-compile",
+      "middleware/test/api-auth-boundary.test.ts",
+      "middleware/test/api-handler.test.ts",
+      "middleware/test/attribute-mapper.test.ts",
+      "middleware/test/audit-event.test.ts",
+      "middleware/test/authentication.test.ts",
+      "middleware/test/authorization-model.test.ts",
+      "middleware/test/certificate-identity.test.ts",
+      "middleware/test/compose-topology.test.ts",
+      "middleware/test/config.test.ts",
+      "middleware/test/consent-builder.test.ts",
+      "middleware/test/consent-mapper.test.ts",
+      "middleware/test/custodian-access-service.test.ts",
+      "middleware/test/custodian-manifest-anchor.test.ts",
+      "middleware/test/e2e-oidc-gate.test.ts",
+      "middleware/test/e2e-report.test.ts",
+      "middleware/test/ethers-access-client.test.ts",
+      "middleware/test/fhir-health.test.ts",
+      "middleware/test/fhir-resource-metadata.test.ts",
+      "middleware/test/hapi-fhir-client.test.ts",
+      "middleware/test/health-access-service.test.ts",
+      "middleware/test/http-authentication.test.ts",
+      "middleware/test/http-robustness.test.ts",
+      "middleware/test/identity-artifacts.test.ts",
+      "middleware/test/institutional-policy.test.ts",
+      "middleware/test/key-material.test.ts",
+      "middleware/test/manifest-publication-service.test.ts",
+      "middleware/test/manifest-signer.test.ts",
+      "middleware/test/manifest-version-commitment-verifier.test.ts",
+      "middleware/test/oidc-verifier.test.ts",
+      "middleware/test/patient-consent-service.test.ts",
+      "middleware/test/patient-share-service.test.ts",
+      "middleware/test/postgres-consent-operation-repository.test.ts",
+      "middleware/test/postgres-manifest-repository.test.ts",
+      "middleware/test/postgres-pool.test.ts",
+      "middleware/test/postgres-share-repository.test.ts",
+      "middleware/test/postgres-udap-client-repository.test.ts",
+      "middleware/test/requesting-institution-client.test.ts",
+      "middleware/test/resource-hasher.test.ts",
+      "middleware/test/resource-manifest.test.ts",
+      "middleware/test/runtime-contracts.test.ts",
+      "middleware/test/runtime-diagnostics.test.ts",
+      "middleware/test/share-grant.test.ts",
+      "middleware/test/start-api-boundary.test.ts",
+      "middleware/test/udap-client.test.ts",
+      "middleware/test/udap-discovery.test.ts",
+      "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+      "middleware/test/udap-registration.test.ts",
+      "middleware/test/udap-token-service.test.ts",
+      "middleware/test/vault-directory.test.ts",
+      "test/docs-check.test.ts",
+      "test/health-access-control.test.ts",
+      "test/institution-registry.test.ts",
+      "test/network-status-import.test.ts",
+      "test/registries.test.ts",
+      "test/scientific-evidence.test.ts"
+    ],
+    "durationMs": 24963,
+    "files": [
+      "middleware/test/api-auth-boundary.test.ts",
+      "middleware/test/api-handler.test.ts",
+      "middleware/test/attribute-mapper.test.ts",
+      "middleware/test/audit-event.test.ts",
+      "middleware/test/authentication.test.ts",
+      "middleware/test/authorization-model.test.ts",
+      "middleware/test/certificate-identity.test.ts",
+      "middleware/test/compose-topology.test.ts",
+      "middleware/test/config.test.ts",
+      "middleware/test/consent-builder.test.ts",
+      "middleware/test/consent-mapper.test.ts",
+      "middleware/test/custodian-access-service.test.ts",
+      "middleware/test/custodian-manifest-anchor.test.ts",
+      "middleware/test/e2e-oidc-gate.test.ts",
+      "middleware/test/e2e-report.test.ts",
+      "middleware/test/ethers-access-client.test.ts",
+      "middleware/test/fhir-health.test.ts",
+      "middleware/test/fhir-resource-metadata.test.ts",
+      "middleware/test/hapi-fhir-client.test.ts",
+      "middleware/test/health-access-service.test.ts",
+      "middleware/test/http-authentication.test.ts",
+      "middleware/test/http-robustness.test.ts",
+      "middleware/test/identity-artifacts.test.ts",
+      "middleware/test/institutional-policy.test.ts",
+      "middleware/test/key-material.test.ts",
+      "middleware/test/manifest-publication-service.test.ts",
+      "middleware/test/manifest-signer.test.ts",
+      "middleware/test/manifest-version-commitment-verifier.test.ts",
+      "middleware/test/oidc-verifier.test.ts",
+      "middleware/test/patient-consent-service.test.ts",
+      "middleware/test/patient-share-service.test.ts",
+      "middleware/test/postgres-consent-operation-repository.test.ts",
+      "middleware/test/postgres-manifest-repository.test.ts",
+      "middleware/test/postgres-pool.test.ts",
+      "middleware/test/postgres-share-repository.test.ts",
+      "middleware/test/postgres-udap-client-repository.test.ts",
+      "middleware/test/requesting-institution-client.test.ts",
+      "middleware/test/resource-hasher.test.ts",
+      "middleware/test/resource-manifest.test.ts",
+      "middleware/test/runtime-contracts.test.ts",
+      "middleware/test/runtime-diagnostics.test.ts",
+      "middleware/test/share-grant.test.ts",
+      "middleware/test/start-api-boundary.test.ts",
+      "middleware/test/udap-client.test.ts",
+      "middleware/test/udap-discovery.test.ts",
+      "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+      "middleware/test/udap-registration.test.ts",
+      "middleware/test/udap-token-service.test.ts",
+      "middleware/test/vault-directory.test.ts",
+      "test/docs-check.test.ts",
+      "test/health-access-control.test.ts",
+      "test/institution-registry.test.ts",
+      "test/network-status-import.test.ts",
+      "test/registries.test.ts",
+      "test/scientific-evidence.test.ts"
+    ],
+    "sourceBefore": "f7b62ac6fff9712cf32364e249e62bbf7b6d23b0b7db331d29b3d38d5105814a",
+    "sourceAfter": "f7b62ac6fff9712cf32364e249e62bbf7b6d23b0b7db331d29b3d38d5105814a",
+    "cases": [
+      {
+        "file": "middleware/test/api-auth-boundary.test.ts",
+        "title": "Health Access API authentication boundary rejects protected reads when no authenticated principal is present",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/api-auth-boundary.test.ts",
+        "title": "Health Access API authentication boundary retires the public manifest read route without invoking any read service",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-auth-boundary.test.ts",
+        "title": "Health Access API authentication boundary blocks direct public FHIR reads and writes without invoking the FHIR client",
+        "status": "passed",
+        "durationMs": 13
+      },
+      {
+        "file": "middleware/test/api-auth-boundary.test.ts",
+        "title": "Health Access API authentication boundary retires generic administrative routes regardless of authentication or bootstrap mode",
+        "status": "passed",
+        "durationMs": 17
+      },
+      {
+        "file": "middleware/test/api-auth-boundary.test.ts",
+        "title": "Health Access API authentication boundary forbids a non-practitioner role from using protected read routes",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler exposes the patient Consent lifecycle as the canonical route and rejects body patient identity",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler requires an idempotency key for canonical patient Consent creation",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler rejects unrecognized patient Consent request fields before invoking the service",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler maps unknown and mismatched network policy errors to stable 4xx responses",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler disables the deprecated patient share route without invoking its side effects",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler does not derive or create a legacy patient share from the request body",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler retires generic administrative routes before invoking legacy services",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler maps unsupported policy and registration conflict codes to stable 4xx responses",
+        "status": "passed",
+        "durationMs": 7
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler maps lease loss and FHIR patient identity failures to stable client errors",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler maps expired or revoked shares to a fail-closed authorization denial",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler uses only the verified institutional principal and matching mTLS certificate for B2B redemption",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler maps replay and temporary metadata-store failures to safe HTTP denials",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler rejects an interinstitutional purpose that was not granted in the UDAP access token",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler propagates the custodian access status instead of wrapping a denial in HTTP 200",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler looks up a share only through the verified grantee organization",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler serves UDAP discovery and delegates registration and token requests",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler serves the configured public Hospital A issuer JWKS at the advertised URI",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler fails closed when the issuer JWKS is absent, private or not configured",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler reports API and dependency health",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler reports unavailable when the manifest metadata database is down",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler maps a manifest database health exception to service unavailable",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler blocks direct FHIR resource routes",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler disables the legacy direct read route without calling the access service",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler retires the public manifest read route without invoking the access service",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler returns stable API errors for missing body fields and unknown routes",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler retires manifest reads before validating an inactive manifest",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler fails closed during API construction when the administrator institution is not configured",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler rejects an API binding that differs from the admin service institution",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/api-handler.test.ts",
+        "title": "Health Access HTTP API handler rejects a blank admin-service binding even when API options provide an institution",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/attribute-mapper.test.ts",
+        "title": "FHIR request attribute mapper maps a protected FHIR read request into the contract AccessRequest DTO",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/attribute-mapper.test.ts",
+        "title": "FHIR request attribute mapper maps HPAYMT as a distinct purpose instead of rejecting it before blockchain authorization",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/attribute-mapper.test.ts",
+        "title": "FHIR request attribute mapper maps subject-based non-Observation resources through the same generic request path",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/attribute-mapper.test.ts",
+        "title": "FHIR request attribute mapper maps patient-based resources through the same generic request path",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/attribute-mapper.test.ts",
+        "title": "FHIR request attribute mapper rejects mismatched patient references before calling blockchain",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/attribute-mapper.test.ts",
+        "title": "FHIR request attribute mapper rejects unsupported scopes explicitly",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/audit-event.test.ts",
+        "title": "FHIR AuditEvent mapper creates an AuditEvent with decision metadata and without embedding clinical payload",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/audit-event.test.ts",
+        "title": "FHIR AuditEvent mapper marks denied accesses with a major failure outcome",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/authentication.test.ts",
+        "title": "Local JWT authentication rejects a secret shorter than 32 characters",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/authentication.test.ts",
+        "title": "Local JWT authentication rejects the documented placeholder secret: replace-with-a-local-secret-of-at-least-32-characters",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/authentication.test.ts",
+        "title": "Local JWT authentication rejects the documented placeholder secret: change-this-local-development-secret-32-chars",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/authentication.test.ts",
+        "title": "Local JWT authentication authenticates a valid Bearer token and propagates the principal",
+        "status": "passed",
+        "durationMs": 6
+      },
+      {
+        "file": "middleware/test/authentication.test.ts",
+        "title": "Local JWT authentication rejects a token signed with a different secret",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/authentication.test.ts",
+        "title": "Local JWT authentication rejects an expired token",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/authentication.test.ts",
+        "title": "Local JWT authentication rejects a signed token when a required claim is missing",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/authentication.test.ts",
+        "title": "Local JWT authentication rejects a signed token with an unsupported role",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/authorization-model.test.ts",
+        "title": "consent-centered authorization model keeps a general network policy separate from a directed patient grant",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/authorization-model.test.ts",
+        "title": "consent-centered authorization model hashes only canonical authorization projection fields",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/authorization-model.test.ts",
+        "title": "consent-centered authorization model changes the policy definition hash when a policy rule changes",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/authorization-model.test.ts",
+        "title": "consent-centered authorization model rejects duplicate policy versions and tampered policy definitions",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/authorization-model.test.ts",
+        "title": "consent-centered authorization model fails closed for invalid purpose, period, organization, resource, and policy",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/authorization-model.test.ts",
+        "title": "consent-centered authorization model fails closed when a direct projection caller supplies an unknown or incompatible policy",
+        "status": "passed",
+        "durationMs": 10
+      },
+      {
+        "file": "middleware/test/authorization-model.test.ts",
+        "title": "consent-centered authorization model canonicalizes equivalent Consent timestamps and rejects non-zoned dateTime values",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/authorization-model.test.ts",
+        "title": "consent-centered authorization model rejects semantically invalid FHIR dateTimes after syntax validation",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/certificate-identity.test.ts",
+        "title": "Institutional certificate identity accepts a current certificate for the registered institution",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/certificate-identity.test.ts",
+        "title": "Institutional certificate identity rejects expired and organization-mismatched certificate identities",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/compose-topology.test.ts",
+        "title": "institutional Compose topology recovers gateways when blockchain or database startup finishes later",
+        "status": "passed",
+        "durationMs": 18
+      },
+      {
+        "file": "middleware/test/compose-topology.test.ts",
+        "title": "institutional Compose topology mounts only institution-scoped identity files at absolute container paths",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/compose-topology.test.ts",
+        "title": "institutional Compose topology wires persistent contract runtime placeholders into both gateways without bootstrap",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/compose-topology.test.ts",
+        "title": "institutional Compose topology keeps Clinic B requester UDAP settings out of the local issuer configuration",
+        "status": "passed",
+        "durationMs": 8
+      },
+      {
+        "file": "middleware/test/compose-topology.test.ts",
+        "title": "institutional Compose topology keeps public and peer listeners distinct inside the gateways",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/compose-topology.test.ts",
+        "title": "institutional Compose topology uses CA-backed HTTPS healthchecks and declares the required external networks",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/compose-topology.test.ts",
+        "title": "institutional Compose topology compiles the HAPI healthcheck with the Java runtime version of HAPI",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/compose-topology.test.ts",
+        "title": "institutional Compose topology configures both HAPI services with HAPI's PostgreSQL database platform",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/compose-topology.test.ts",
+        "title": "institutional Compose topology parses both HAPI environment shapes and validates the effective dialect configuration",
+        "status": "passed",
+        "durationMs": 6
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config describes both local FHIR vaults without collapsing them into one base URL",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config requires explicit vault selection instead of defaulting to Hospital A",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config requires both explicit gateway and vault selections without deriving either value",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config ships an unbound environment example instead of an operational Hospital A selection",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config uses loopback vault endpoints only when the host development override is explicit",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config derives local metadata database defaults from the explicitly selected vault",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config creates an explicit host-development config without changing the Docker defaults",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config selects one vault explicitly and applies per-vault URL overrides",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config rejects an unknown vault instead of silently routing to Hospital A",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config rejects an ambiguous bootstrap setting instead of enabling it",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config requires the complete configured wallet set when a permissioned RPC deployment is selected",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config treats blank Compose wallet placeholders as external optional secrets",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config does not promote Clinic B requester settings into the local UDAP issuer",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config loads separate OIDC issuer trust configuration for both institutions",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config enables UDAP only with a complete trusted configuration",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config loads explicit gateway bind and public/peer port settings",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config defaults the peer listener to a distinct container port and rejects collisions",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config loads trusted UDAP JWKS from an explicitly mounted file path",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config rejects invalid gateway ports before the runtime starts",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config rejects duplicate OIDC issuer URLs during configuration",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config rejects a UDAP signing path reused as TLS key material",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config keeps manifest signing independent from the UDAP signing identity",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config requires an explicit complete JWK pair for persistent manifest signing",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config rejects malformed manifest and UDAP public JWK material during config load",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config binds the public JWKS URI to the gateway origin and allowed path",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/config.test.ts",
+        "title": "Health Access Control middleware config rejects RSA oth private material in trusted JWKS during config loading",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/consent-builder.test.ts",
+        "title": "controlled FHIR Consent builder builds an active, permitted R4 Consent from domain scope only",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/consent-builder.test.ts",
+        "title": "controlled FHIR Consent builder declares the FHIR purpose terminology so HAPI preserves the authorization purpose",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/consent-builder.test.ts",
+        "title": "controlled FHIR Consent builder does not copy arbitrary patient-supplied FHIR properties",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/consent-builder.test.ts",
+        "title": "controlled FHIR Consent builder supports a directed organization grant without a practitioner constraint",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper maps an active FHIR Consent permit into the on-chain consent registration DTO",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper infers the resource type from the referenced FHIR data when HAPI omits provision.class",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects a class that disagrees with the referenced FHIR resource type",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects inactive FHIR consent before creating on-chain input",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper maps non-Observation FHIR consent scopes through the same generic policy path",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper maps DiagnosticReport consent scopes to a stable resource type code",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper maps an explicit payment purpose so a divergent API purpose reaches the on-chain consent decision",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects a Consent without a network policy extension",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects a policy that does not match the Consent resource or purpose",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects a Consent with a divergent resource reference",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects a Consent that attempts to authorize multiple resources",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects conflicting organization declarations",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects multiple organization references",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects multiple practitioner actor references",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects multiple policy extensions",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects multiple class, action, and purpose values",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/consent-mapper.test.ts",
+        "title": "FHIR Consent mapper rejects a Consent period without a timezone",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/custodian-access-service.test.ts",
+        "title": "custodian directed-share service redeems a directed handoff only once and returns opaque share metadata",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/custodian-access-service.test.ts",
+        "title": "custodian directed-share service loads custodian metadata before delivery and rejects a wrong grantee without calling delivery",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/custodian-access-service.test.ts",
+        "title": "custodian directed-share service denies an active unredeemed share before manifest lookup",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/custodian-access-service.test.ts",
+        "title": "custodian directed-share service allows only the grantee to look up the opaque share metadata after redemption",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/custodian-manifest-anchor.test.ts",
+        "title": "Custodian manifest anchor uses the owner-bound contract when no institutional signer is supplied",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/custodian-manifest-anchor.test.ts",
+        "title": "Custodian manifest anchor forwards version transitions and normalizes manifest records",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-oidc-gate.test.ts",
+        "title": "real Keycloak E2E gate defines six users with role and subject claims for both realms",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/e2e-oidc-gate.test.ts",
+        "title": "real Keycloak E2E gate rejects a token whose institution or subject claim does not match the imported profile",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/e2e-oidc-gate.test.ts",
+        "title": "real Keycloak E2E gate uses the canonical Clinic B Practitioner reference across identity and E2E inputs",
+        "status": "passed",
+        "durationMs": 8
+      },
+      {
+        "file": "middleware/test/e2e-oidc-gate.test.ts",
+        "title": "real Keycloak E2E gate pins the issuer host and port used by the container to the trusted internal issuer",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/e2e-oidc-gate.test.ts",
+        "title": "real Keycloak E2E gate keeps the Compose default, example environment and E2E Compose environment on http://keycloak:8080",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-oidc-gate.test.ts",
+        "title": "real Keycloak E2E gate exercises the six-user OIDC gate with real RS256 and JWKS verification",
+        "status": "passed",
+        "durationMs": 293
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates retains the assertion failure when a denial leaks clinical content",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates does not hide a wrong denial reason behind the HTTP status",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates keeps negative internal-read counts unknown when no counter was collected",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates accepts the sanitized shape emitted by a fully passed live E2E",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates dispatches each E2E lifecycle command explicitly from npm",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates marks every live scenario blocked when a required dependency is unavailable",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates keeps the readiness gate closed unless every real dependency is ready",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates builds a reset plan limited to this isolated project's Compose files",
+        "status": "passed",
+        "durationMs": 120
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates requires root and project labels without relying on working_dir",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates accepts absent resources as an idempotent reset state",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates rejects resources with a mismatched project, root or Docker name",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates rejects a volume whose Compose project or working directory is not this worktree",
+        "status": "passed",
+        "durationMs": 540
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates rejects an explicitly empty Compose working_dir label",
+        "status": "passed",
+        "durationMs": 143
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates rejects a non-empty Compose working_dir label from another worktree",
+        "status": "passed",
+        "durationMs": 141
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates requires negative responses to be HTTP denials without clinical payload",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates blocks report generation when a forbidden live secret or clinical field is present",
+        "status": "passed",
+        "durationMs": 6
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates always includes the OIDC, mTLS, UDAP, HAPI, PostgreSQL and Besu readiness targets",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates keeps denial statuses specific to each failure class",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates uses unique custodian-compatible request ids for every live read scenario",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates uses a distinct E2E idempotency key per execution",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates queries the Consent identity hash and validates every returned projection field",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates bounds network and asynchronous work",
+        "status": "passed",
+        "durationMs": 102
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates uses a Compose-specific timeout of at least ten minutes with an explicit override",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates invokes an absolute npm.cmd path successfully on Windows without mocks",
+        "status": "passed",
+        "durationMs": 876
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates resolves a bare npm.cmd command on Windows without mocks",
+        "status": "passed",
+        "durationMs": 831
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates tampers the exact manifest version commitment without changing the current FHIR fixture",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/e2e-report.test.ts",
+        "title": "real E2E report and safety gates cleans compose.env after successful, blocked and thrown temporary-file owners",
+        "status": "passed",
+        "durationMs": 26
+      },
+      {
+        "file": "middleware/test/ethers-access-client.test.ts",
+        "title": "ethers access client simulates access before sending the transaction and returns request metadata",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/ethers-access-client.test.ts",
+        "title": "ethers access client uses static verification before emitting the verification transaction",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/ethers-access-client.test.ts",
+        "title": "ethers access client submits an institutional PEP decision and finalizes its enforcement",
+        "status": "passed",
+        "durationMs": 18
+      },
+      {
+        "file": "middleware/test/ethers-access-client.test.ts",
+        "title": "ethers access client anchors and versions patient Consent operations through the blockchain client",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/fhir-health.test.ts",
+        "title": "FHIR runtime health checker checks only the resources required by the selected vault",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/fhir-health.test.ts",
+        "title": "FHIR runtime health checker reports the first failed endpoint without hiding the failing status",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/fhir-health.test.ts",
+        "title": "FHIR runtime health checker reports network failures as an unavailable endpoint",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/fhir-health.test.ts",
+        "title": "FHIR runtime health checker retries a vault metadata endpoint until HAPI is actually ready",
+        "status": "passed",
+        "durationMs": 6
+      },
+      {
+        "file": "middleware/test/fhir-health.test.ts",
+        "title": "FHIR runtime health checker fails with the vault, endpoint, last status and timeout when HAPI never becomes ready",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/fhir-resource-metadata.test.ts",
+        "title": "generic FHIR resource metadata extraction extracts patient metadata from subject-based clinical resources",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/fhir-resource-metadata.test.ts",
+        "title": "generic FHIR resource metadata extraction extracts patient metadata from patient-based clinical resources",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/fhir-resource-metadata.test.ts",
+        "title": "generic FHIR resource metadata extraction fails with a stable error for supported resources missing patient linkage",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/fhir-resource-metadata.test.ts",
+        "title": "generic FHIR resource metadata extraction fails with a stable error for unsupported resource types",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/hapi-fhir-client.test.ts",
+        "title": "HAPI FHIR HTTP client reads a FHIR resource by reference through the configured base URL",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/hapi-fhir-client.test.ts",
+        "title": "HAPI FHIR HTTP client checks only HAPI metadata for local readiness",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/hapi-fhir-client.test.ts",
+        "title": "HAPI FHIR HTTP client reads exactly the requested immutable FHIR version through vread",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/hapi-fhir-client.test.ts",
+        "title": "HAPI FHIR HTTP client rejects a vread response without the exact requested meta.versionId",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/hapi-fhir-client.test.ts",
+        "title": "HAPI FHIR HTTP client creates an AuditEvent without requiring clinical payload in the request",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/hapi-fhir-client.test.ts",
+        "title": "HAPI FHIR HTTP client creates a FHIR resource using the resourceType route",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/hapi-fhir-client.test.ts",
+        "title": "HAPI FHIR HTTP client upserts a Consent at the exact deterministic reference with PUT",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/hapi-fhir-client.test.ts",
+        "title": "HAPI FHIR HTTP client throws a stable error when HAPI FHIR rejects the request",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/hapi-fhir-client.test.ts",
+        "title": "HAPI FHIR HTTP client forwards only the configured service authorization to HAPI",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service withholds a content mismatch after exactly one vread and finalizes a denial",
+        "status": "passed",
+        "durationMs": 12
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service withholds a version mismatch after exactly one vread and finalizes a denial",
+        "status": "passed",
+        "durationMs": 6
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service exposes only the directed institutional read operation",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service authorizes a directed FHIR vread only after share, consent and blockchain checks",
+        "status": "passed",
+        "durationMs": 38
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service denies a non-grantee before retrieving the resource",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service normalizes an externally represented assertion hash before the EVM request",
+        "status": "passed",
+        "durationMs": 20
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service denies a mutated Consent before requestInstitutionalAccess and vread",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service denies when the active on-chain Consent projection has a different version",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service does not vread when the local policy is inactive or version-divergent",
+        "status": "passed",
+        "durationMs": 10
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service does not vread an expired current Consent",
+        "status": "passed",
+        "durationMs": 6
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service does not vread when the current Consent organization is mismatched",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service does not vread when the manifest signature or commitment is tampered",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service returns 503 when manifest blockchain verification is unavailable",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service preserves the FHIR dependency 503 when AuditEvent finalization also fails",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service uses trusted requestTime for local policy evaluation and blocks delivery after post-read finalization failure",
+        "status": "passed",
+        "durationMs": 15
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service blocks clinical delivery when mandatory audit fails",
+        "status": "passed",
+        "durationMs": 9
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service blocks revocation during a clinical read",
+        "status": "passed",
+        "durationMs": 11
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service blocks expiration during a clinical read",
+        "status": "passed",
+        "durationMs": 7
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service revalidates the current Consent actor before any vread",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service fails closed and audits an inactive Consent without clinical entities",
+        "status": "passed",
+        "durationMs": 11
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service does not vread when the versioned policy is denied by the trusted blockchain",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service fails closed when the blockchain cannot evaluate the request",
+        "status": "passed",
+        "durationMs": 14
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service returns 503 when the FHIR Consent dependency is unavailable",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service returns 503 when the on-chain Consent projection dependency is unavailable",
+        "status": "passed",
+        "durationMs": 15
+      },
+      {
+        "file": "middleware/test/health-access-service.test.ts",
+        "title": "Health access middleware service rejects directed-read construction without the mandatory current on-chain Consent readers",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/http-authentication.test.ts",
+        "title": "Bearer authentication over the local HTTP API accepts the Clinic B certificate and rejects a connection without a client certificate",
+        "status": "passed",
+        "durationMs": 97
+      },
+      {
+        "file": "middleware/test/http-authentication.test.ts",
+        "title": "Bearer authentication over the local HTTP API accepts a valid token, rejects a missing token and blocks direct FHIR access",
+        "status": "passed",
+        "durationMs": 28
+      },
+      {
+        "file": "middleware/test/http-robustness.test.ts",
+        "title": "HTTP request failure containment returns safe errors and continues serving after invalid, oversized and rejected requests",
+        "status": "passed",
+        "durationMs": 39
+      },
+      {
+        "file": "middleware/test/identity-artifacts.test.ts",
+        "title": "identity artifacts defines local-only human users, confidential direct-grant clients and all identity mappers",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "file": "middleware/test/identity-artifacts.test.ts",
+        "title": "identity artifacts imports demo users with a complete Keycloak profile and no required actions",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/identity-artifacts.test.ts",
+        "title": "identity artifacts keeps PKI outputs purpose-specific and refuses implicit replacement",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/identity-artifacts.test.ts",
+        "title": "identity artifacts provides a dedicated UDAP generator with explicit overwrite protection",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/identity-artifacts.test.ts",
+        "title": "identity artifacts makes Keycloak import deterministic and readiness observable",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/identity-artifacts.test.ts",
+        "title": "identity artifacts uses an image-native bounded Keycloak readiness probe instead of curl",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/identity-artifacts.test.ts",
+        "title": "identity artifacts keeps the advertised public JWKS URI aligned with the API route",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/institutional-policy.test.ts",
+        "title": "deny-only institutional policy denies an organization blocked by the custodian",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/institutional-policy.test.ts",
+        "title": "deny-only institutional policy denies a purpose blocked by the custodian",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/institutional-policy.test.ts",
+        "title": "deny-only institutional policy returns only a local permit when no deny rule matches",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/institutional-policy.test.ts",
+        "title": "deny-only institutional policy uses trusted registry attributes instead of caller-supplied ABAC claims",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/institutional-policy.test.ts",
+        "title": "deny-only institutional policy denies a stale or inactive local policy version before the read boundary",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/key-material.test.ts",
+        "title": "identity key material requires a real ES256 P-256 manifest pair with matching public coordinates",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/key-material.test.ts",
+        "title": "identity key material requires public RSA/EC fields and rejects private material in trusted UDAP JWKS",
+        "status": "passed",
+        "durationMs": 44
+      },
+      {
+        "file": "middleware/test/key-material.test.ts",
+        "title": "identity key material rejects copied public material even when paths and kids differ",
+        "status": "passed",
+        "durationMs": 17
+      },
+      {
+        "file": "middleware/test/key-material.test.ts",
+        "title": "identity key material checks the configured issuer JWKS against the actual UDAP private key at runtime",
+        "status": "passed",
+        "durationMs": 199
+      },
+      {
+        "file": "middleware/test/key-material.test.ts",
+        "title": "identity key material requires the active issuer JWKS key metadata to match the configured signer",
+        "status": "passed",
+        "durationMs": 84
+      },
+      {
+        "file": "middleware/test/key-material.test.ts",
+        "title": "identity key material fails closed when startup issuer JWKS contains RSA oth private material",
+        "status": "passed",
+        "durationMs": 100
+      },
+      {
+        "file": "middleware/test/key-material.test.ts",
+        "title": "identity key material rejects a signing PEM whose algorithm does not match configuration",
+        "status": "passed",
+        "durationMs": 207
+      },
+      {
+        "file": "middleware/test/key-material.test.ts",
+        "title": "identity key material compares signed metadata JWKS entries including kid and alg",
+        "status": "passed",
+        "durationMs": 31
+      },
+      {
+        "file": "middleware/test/manifest-publication-service.test.ts",
+        "title": "FHIR manifest publication service persists a signed pending version, anchors its signed active version, then activates it",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/manifest-publication-service.test.ts",
+        "title": "FHIR manifest publication service keeps the pending version non-deliverable when anchoring fails",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/manifest-publication-service.test.ts",
+        "title": "FHIR manifest publication service reconciles an active chain anchor after a restart before database activation",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "file": "middleware/test/manifest-publication-service.test.ts",
+        "title": "FHIR manifest publication service reconciles manifest revocation after a chain anchor before local activation",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/manifest-publication-service.test.ts",
+        "title": "FHIR manifest publication service anchors a legitimately updated FHIR resource as v2 and supersedes the signed v1",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/manifest-publication-service.test.ts",
+        "title": "FHIR manifest publication service reconciles an active manifest returned during initial publication before success",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/manifest-publication-service.test.ts",
+        "title": "FHIR manifest publication service rejects persisted active metadata tampering even when its commitment field is unchanged",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/manifest-publication-service.test.ts",
+        "title": "FHIR manifest publication service reconciles an active next version returned after a restart before success",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/manifest-publication-service.test.ts",
+        "title": "FHIR manifest publication service rejects a noncanonical Consent before publishing or anchoring a manifest",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/manifest-signer.test.ts",
+        "title": "ES256 manifest signer signs a commitment and verifies the exact signed manifest version",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "file": "middleware/test/manifest-signer.test.ts",
+        "title": "ES256 manifest signer rejects a signature when the commitment or signing key id changes",
+        "status": "passed",
+        "durationMs": 6
+      },
+      {
+        "file": "middleware/test/manifest-version-commitment-verifier.test.ts",
+        "title": "versioned manifest commitment verifier accepts only the active matching on-chain version commitment",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/oidc-verifier.test.ts",
+        "title": "OIDC multi-issuer verifier rejects duplicate issuer URLs instead of silently overwriting trust",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/oidc-verifier.test.ts",
+        "title": "OIDC multi-issuer verifier accepts a signed practitioner identity from its configured issuer",
+        "status": "passed",
+        "durationMs": 140
+      },
+      {
+        "file": "middleware/test/oidc-verifier.test.ts",
+        "title": "OIDC multi-issuer verifier rejects a token from an issuer that is not configured",
+        "status": "passed",
+        "durationMs": 84
+      },
+      {
+        "file": "middleware/test/oidc-verifier.test.ts",
+        "title": "OIDC multi-issuer verifier does not require or trust OIDC role and specialty attributes",
+        "status": "passed",
+        "durationMs": 131
+      },
+      {
+        "file": "middleware/test/oidc-verifier.test.ts",
+        "title": "OIDC multi-issuer verifier accepts a patient identity only when the verified patient reference and replay id are present",
+        "status": "passed",
+        "durationMs": 78
+      },
+      {
+        "file": "middleware/test/oidc-verifier.test.ts",
+        "title": "OIDC multi-issuer verifier rejects a practitioner token whose verified organization claim is absent or divergent",
+        "status": "passed",
+        "durationMs": 79
+      },
+      {
+        "file": "middleware/test/oidc-verifier.test.ts",
+        "title": "OIDC multi-issuer verifier rejects a human token without a replay identifier",
+        "status": "passed",
+        "durationMs": 49
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service creates one constrained Consent, anchors it, derives one share, publishes one manifest, and returns no clinical payload",
+        "status": "passed",
+        "durationMs": 8
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service reuses an idempotent operation without creating a second Consent or share",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service serializes same-key requests so concurrent calls create one Consent and one share",
+        "status": "passed",
+        "durationMs": 12
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service does not let a worker continue after another owner fences its expired lease",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service recovers a crashed FHIR upsert without issuing a second Consent write",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service rejects a same-key request whose scope or policy changes",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service does not issue a second one-time handoff when its checkpoint is lost",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service fails closed when the authenticated patient does not match the created Consent",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service rejects missing or inactive policy before writing FHIR",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service rejects an invalid period, an unregistered institution, another organization's practitioner, or a missing resource",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service rejects a resource validator result whose identity differs from the request",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service rejects construction when a security validator is missing",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service treats an empty blockchain tuple as an absent Consent",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service marks a chain outage recoverable and resumes from the durable chain stage",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "middleware/test/patient-consent-service.test.ts",
+        "title": "patient Consent lifecycle service revokes FHIR, blockchain, share, and manifest access for the authenticated patient",
+        "status": "passed",
+        "durationMs": 3
+      },
+      {
+        "file": "middleware/test/patient-share-service.test.ts",
+        "title": "patient share creation uses the trusted injected custodian instead of a hardcoded institution",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/patient-share-service.test.ts",
+        "title": "patient share creation derives a directed share from patient context and stores only a handoff hash",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/patient-share-service.test.ts",
+        "title": "patient share creation does not persist a share when the custodian validation rejects the patient Consent or resource binding",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/patient-share-service.test.ts",
+        "title": "patient share creation publishes custodian-owned manifests only after activating the share",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/patient-share-service.test.ts",
+        "title": "patient share creation registers the patient-directed consent before publishing the manifest",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/postgres-consent-operation-repository.test.ts",
+        "title": "PostgreSQL Consent operation repository persists idempotency, lifecycle state, recovery state, and patient-scoped lookup",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "file": "middleware/test/postgres-consent-operation-repository.test.ts",
+        "title": "PostgreSQL Consent operation repository rejects a duplicate patient/idempotency pair without exposing the operation payload",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/postgres-consent-operation-repository.test.ts",
+        "title": "PostgreSQL Consent operation repository atomically claims the first worker and rejects a mismatched digest",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/postgres-consent-operation-repository.test.ts",
+        "title": "PostgreSQL Consent operation repository fences an expired worker so its stale checkpoint cannot overwrite the new owner",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/postgres-manifest-repository.test.ts",
+        "title": "PostgreSQL versioned manifest repository reconciles the exact pending manifest row after a repository restart",
+        "status": "passed",
+        "durationMs": 638
+      },
+      {
+        "file": "middleware/test/postgres-manifest-repository.test.ts",
+        "title": "PostgreSQL versioned manifest repository keeps a new FHIR-only manifest pending until the corresponding active version is signed",
+        "status": "passed",
+        "durationMs": 160
+      },
+      {
+        "file": "middleware/test/postgres-manifest-repository.test.ts",
+        "title": "PostgreSQL versioned manifest repository rejects an activation signature that changes immutable clinical metadata",
+        "status": "passed",
+        "durationMs": 165
+      },
+      {
+        "file": "middleware/test/postgres-manifest-repository.test.ts",
+        "title": "PostgreSQL versioned manifest repository does not expose Hospital A active manifests through the separate Clínica B metadata database",
+        "status": "passed",
+        "durationMs": 306
+      },
+      {
+        "file": "middleware/test/postgres-manifest-repository.test.ts",
+        "title": "PostgreSQL versioned manifest repository atomically supersedes a signed v1 while activating its signed v2",
+        "status": "passed",
+        "durationMs": 74
+      },
+      {
+        "file": "middleware/test/postgres-pool.test.ts",
+        "title": "PostgreSQL pool lifecycle absorbs an idle-client transport error without throwing",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/postgres-share-repository.test.ts",
+        "title": "PostgreSQL share repository keeps a pending share unavailable until it is activated",
+        "status": "passed",
+        "durationMs": 35
+      },
+      {
+        "file": "middleware/test/postgres-share-repository.test.ts",
+        "title": "PostgreSQL share repository redeems a handoff code only once for its directed grantee before expiration",
+        "status": "passed",
+        "durationMs": 42
+      },
+      {
+        "file": "middleware/test/postgres-share-repository.test.ts",
+        "title": "PostgreSQL share repository does not redeem a code for a different institution or after expiration",
+        "status": "passed",
+        "durationMs": 38
+      },
+      {
+        "file": "middleware/test/postgres-udap-client-repository.test.ts",
+        "title": "UDAP client repository stores only registered client metadata and atomically rejects a replayed assertion jti",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/requesting-institution-client.test.ts",
+        "title": "Clinic B requesting institution client redeems a handoff through the Hospital A HTTPS endpoint with the UDAP bearer token and mTLS certificate",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/requesting-institution-client.test.ts",
+        "title": "Clinic B requesting institution client reads a redeemed share with only custodian-owned identifiers and mTLS",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/requesting-institution-client.test.ts",
+        "title": "Clinic B requesting institution client rejects malformed HTTP 200 read envelopes and inconsistent share or resource identities",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/requesting-institution-client.test.ts",
+        "title": "Clinic B requesting institution client fails closed for malformed redemption and denial responses containing clinical payload",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/resource-hasher.test.ts",
+        "title": "FHIR resource hasher creates the same canonical hash for semantically equal resources with reordered keys",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/resource-hasher.test.ts",
+        "title": "FHIR resource hasher changes the hash when clinical content changes",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/resource-hasher.test.ts",
+        "title": "FHIR resource hasher rejects resources without FHIR identity fields",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/resource-hasher.test.ts",
+        "title": "FHIR resource hasher extracts a required FHIR version identifier",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/resource-manifest.test.ts",
+        "title": "Versioned FHIR manifest model builds a manifest version from a directed share and FHIR resource",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/resource-manifest.test.ts",
+        "title": "Versioned FHIR manifest model changes the commitment when versioned authorization state changes",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/resource-manifest.test.ts",
+        "title": "Versioned FHIR manifest model rejects a share whose patient differs from the FHIR resource",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/runtime-contracts.test.ts",
+        "title": "API contract runtime rejects a production-looking API when canonical consent and interop dependencies are incomplete",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/runtime-contracts.test.ts",
+        "title": "API contract runtime provides a persistent JSON-RPC attachment mode",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/runtime-contracts.test.ts",
+        "title": "API contract runtime rejects an implicit ephemeral deployment outside bootstrap mode",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/runtime-contracts.test.ts",
+        "title": "API contract runtime requires configured private keys for an attached JSON-RPC deployment",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/runtime-contracts.test.ts",
+        "title": "API contract runtime reads persistent deployment metadata without accepting private-key material",
+        "status": "passed",
+        "durationMs": 8
+      },
+      {
+        "file": "middleware/test/runtime-contracts.test.ts",
+        "title": "API contract runtime keeps deployment serialization closed and drops arbitrary fields from public projection",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/runtime-contracts.test.ts",
+        "title": "API contract runtime rejects arbitrary nested public-network fields and sanitizes status fixtures",
+        "status": "passed",
+        "durationMs": 9
+      },
+      {
+        "file": "middleware/test/runtime-diagnostics.test.ts",
+        "title": "institutional runtime diagnostics builds host/container-aware targets for both gateways and dependencies",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "middleware/test/runtime-diagnostics.test.ts",
+        "title": "institutional runtime diagnostics omits optional UDAP discovery when UDAP is explicitly disabled",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/runtime-diagnostics.test.ts",
+        "title": "institutional runtime diagnostics treats Clinic B UDAP as a requester check against the remote Hospital A issuer",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/runtime-diagnostics.test.ts",
+        "title": "institutional runtime diagnostics includes configured CA and client material for HTTPS gateway diagnostics",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/runtime-diagnostics.test.ts",
+        "title": "institutional runtime diagnostics reports the dependency error with remediation context",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/runtime-diagnostics.test.ts",
+        "title": "institutional runtime diagnostics reports an unavailable external Docker network with exact remediation",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/runtime-diagnostics.test.ts",
+        "title": "institutional runtime diagnostics stops waiting on the first failed dependency",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/share-grant.test.ts",
+        "title": "directed ShareGrant creates an opaque active share owned by a distinct custodian and grantee",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/share-grant.test.ts",
+        "title": "directed ShareGrant rejects a share whose custodian and grantee are the same institution",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/share-grant.test.ts",
+        "title": "directed ShareGrant requires a read operation and a purpose",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/share-grant.test.ts",
+        "title": "directed ShareGrant rejects an invalid validity period",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/share-grant.test.ts",
+        "title": "directed ShareGrant allows only an active share for its exact grantee, purpose and period",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/share-grant.test.ts",
+        "title": "directed ShareGrant rejects a divergent requester organization without accepting requester-supplied patient data",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/share-grant.test.ts",
+        "title": "directed ShareGrant rejects inactive, expired and purpose-divergent shares before resource lookup",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/start-api-boundary.test.ts",
+        "title": "canonical start-api configuration boundary rejects direct startup when INSTITUTION_GATEWAY is missing",
+        "status": "passed",
+        "durationMs": 1761
+      },
+      {
+        "file": "middleware/test/start-api-boundary.test.ts",
+        "title": "canonical start-api configuration boundary rejects direct startup when FHIR_VAULT_ID is missing",
+        "status": "passed",
+        "durationMs": 1511
+      },
+      {
+        "file": "middleware/test/start-api-boundary.test.ts",
+        "title": "canonical start-api configuration boundary rejects direct startup when gateway and vault selections mismatch",
+        "status": "passed",
+        "durationMs": 1485
+      },
+      {
+        "file": "middleware/test/udap-client.test.ts",
+        "title": "UDAP institutional requester client executes discovery, signed software statement, DCR, assertion and token with the same mTLS material",
+        "status": "passed",
+        "durationMs": 38
+      },
+      {
+        "file": "middleware/test/udap-client.test.ts",
+        "title": "UDAP institutional requester client rejects discovery metadata without the protected UDAP endpoints",
+        "status": "passed",
+        "durationMs": 24
+      },
+      {
+        "file": "middleware/test/udap-discovery.test.ts",
+        "title": "UDAP discovery publishes the required B2B profile and absolute endpoints",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/udap-discovery.test.ts",
+        "title": "UDAP discovery publishes the configured public issuer JWKS URI",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report requires the complete unique mandatory scenario catalog",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report rejects a negative scenario that exposes clinical payload fields",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report calculates local timing statistics without treating them as production capacity",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report keeps a source-file reference blocked without an executed case at the current source revision",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report refuses performance measurements of unexecuted evidence",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report keeps the gate closed until live UDAP coverage is produced",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/udap-interinstitutional-scenario-report.test.ts",
+        "title": "UDAP interinstitutional scenario report executes the six baseline scenarios through the local mTLS UDAP gateway",
+        "status": "passed",
+        "durationMs": 183
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration persists only approved client metadata after validating the mTLS organization",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration rejects a registration whose certificate does not match the statement",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration validates signed statement audience, expiry and jti before registration",
+        "status": "passed",
+        "durationMs": 43
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration accepts a software statement issued up to five seconds ahead to tolerate gateway clock skew",
+        "status": "passed",
+        "durationMs": 78
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration rejects a software statement issued more than five seconds ahead",
+        "status": "passed",
+        "durationMs": 20
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration rejects a software statement whose subject does not equal the client id",
+        "status": "passed",
+        "durationMs": 46
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration rejects a software statement whose issuer does not equal the client id",
+        "status": "passed",
+        "durationMs": 32
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration rejects a software statement missing sub",
+        "status": "passed",
+        "durationMs": 25
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration rejects a software statement whose lifetime exceeds five minutes",
+        "status": "passed",
+        "durationMs": 24
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration records a statement jti before persisting the registered client",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/udap-registration.test.ts",
+        "title": "UDAP registration rejects private material in the trusted software-statement JWKS",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/udap-token-service.test.ts",
+        "title": "UDAP token service issues a short certificate-bound token for a valid private_key_jwt assertion",
+        "status": "passed",
+        "durationMs": 119
+      },
+      {
+        "file": "middleware/test/udap-token-service.test.ts",
+        "title": "UDAP token service marks issued tokens with the dedicated UDAP key id",
+        "status": "passed",
+        "durationMs": 26
+      },
+      {
+        "file": "middleware/test/udap-token-service.test.ts",
+        "title": "UDAP token service requires one public issuer key and rejects private JWKS material",
+        "status": "passed",
+        "durationMs": 47
+      },
+      {
+        "file": "middleware/test/udap-token-service.test.ts",
+        "title": "UDAP token service restricts access-token verification to the configured algorithm",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/udap-token-service.test.ts",
+        "title": "UDAP token service rejects an access token whose header kid differs from the trusted key",
+        "status": "passed",
+        "durationMs": 125
+      },
+      {
+        "file": "middleware/test/udap-token-service.test.ts",
+        "title": "UDAP token service rejects assertion replay and a divergent mTLS certificate thumbprint",
+        "status": "passed",
+        "durationMs": 74
+      },
+      {
+        "file": "middleware/test/udap-token-service.test.ts",
+        "title": "UDAP token service accepts an assertion issued up to five seconds ahead to tolerate gateway clock skew",
+        "status": "passed",
+        "durationMs": 57
+      },
+      {
+        "file": "middleware/test/udap-token-service.test.ts",
+        "title": "UDAP token service rejects an assertion issued more than five seconds in the future even when its lifetime is short",
+        "status": "passed",
+        "durationMs": 39
+      },
+      {
+        "file": "middleware/test/udap-token-service.test.ts",
+        "title": "UDAP token service rejects assertions with a divergent audience or an expired lifetime",
+        "status": "passed",
+        "durationMs": 72
+      },
+      {
+        "file": "middleware/test/vault-directory.test.ts",
+        "title": "Vault directory and client factory resolves a trusted vault only when vault id and custodian agree",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/vault-directory.test.ts",
+        "title": "Vault directory and client factory rejects an unknown vault before any client can be selected",
+        "status": "passed",
+        "durationMs": 0
+      },
+      {
+        "file": "middleware/test/vault-directory.test.ts",
+        "title": "Vault directory and client factory rejects a manifest custodian that diverges from the trusted descriptor",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "middleware/test/vault-directory.test.ts",
+        "title": "Vault directory and client factory builds the HAPI client from the trusted internal URL and service credentials",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check accepts the committed route, OpenAPI and security documentation",
+        "status": "passed",
+        "durationMs": 23
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when the canonical patient Consent route is removed from the code fixture",
+        "status": "passed",
+        "durationMs": 12
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when the canonical patient Consent method is changed in the code fixture",
+        "status": "passed",
+        "durationMs": 11
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when only the GET FHIR route marker is mutated in the code fixture",
+        "status": "passed",
+        "durationMs": 11
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when a required OpenAPI schema is removed from the fixture",
+        "status": "passed",
+        "durationMs": 11
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when the mTLS authentication marker is removed from OpenAPI",
+        "status": "passed",
+        "durationMs": 9
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when the runtime success status for a route is changed",
+        "status": "passed",
+        "durationMs": 14
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when a documented error status is removed from a canonical operation",
+        "status": "passed",
+        "durationMs": 11
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when a required 400 response loses its component schema reference",
+        "status": "passed",
+        "durationMs": 16
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when the manual gateway and client-certificate pairing is changed",
+        "status": "passed",
+        "durationMs": 9
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when a normal curl mTLS example reintroduces SkipCertificateCheck",
+        "status": "passed",
+        "durationMs": 10
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when the first documented curl command uses the gateway's own certificate",
+        "status": "passed",
+        "durationMs": 15
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when the first documented curl command uses the wrong CA",
+        "status": "passed",
+        "durationMs": 12
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when a canonical route loses its runtime authentication requirement",
+        "status": "passed",
+        "durationMs": 11
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when the OpenAPI operation loses its security requirement",
+        "status": "passed",
+        "durationMs": 10
+      },
+      {
+        "file": "test/docs-check.test.ts",
+        "title": "documentation contract check fails when the OpenAPI denial schema loses its no-payload contract",
+        "status": "passed",
+        "durationMs": 10
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl registers an organization and practitioner as authorized network participants",
+        "status": "passed",
+        "durationMs": 115
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl prevents non-owners from registering participants or policies through HealthAccessControl",
+        "status": "passed",
+        "durationMs": 77
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl registers an ABAC policy mask for treatment access to Observation resources",
+        "status": "passed",
+        "durationMs": 69
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl stores immutable policy versions and deactivates only the selected version",
+        "status": "passed",
+        "durationMs": 73
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl registers a patient Consent only against an active matching policy version",
+        "status": "passed",
+        "durationMs": 96
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl does not verify a cached legacy decision after the legacy path is disabled",
+        "status": "passed",
+        "durationMs": 69
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl enforces canonical policy role and specialty requirements from the registry",
+        "status": "passed",
+        "durationMs": 132
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl does not use legacy directed Consent as a canonical institutional authorization source",
+        "status": "passed",
+        "durationMs": 63
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl rejects a non-PEP and denies a divergent consent projection",
+        "status": "passed",
+        "durationMs": 67
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl allows an authorized custodian PEP to evaluate an interinstitutional request",
+        "status": "passed",
+        "durationMs": 62
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl re-evaluates an institutional decision after patient Consent revocation",
+        "status": "passed",
+        "durationMs": 73
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl re-evaluates institutional decisions after policy or registry deactivation",
+        "status": "passed",
+        "durationMs": 339
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl binds enforcement finalization to the institution gateway that made the decision",
+        "status": "passed",
+        "durationMs": 69
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry registers an institutional gateway with metadata commitment and can deactivate it",
+        "status": "passed",
+        "durationMs": 12
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry rejects non-owner institution administration",
+        "status": "passed",
+        "durationMs": 8
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry binds the configured gateway to an institution",
+        "status": "passed",
+        "durationMs": 10
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry exposes a fail-closed institution comparison for read-before-write bootstrap",
+        "status": "passed",
+        "durationMs": 7
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry allows stale deployment redeploy only for an exact missing-code error and explicit E2E flag",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry replaces an existing persistent deployment without leaving a temporary file",
+        "status": "passed",
+        "durationMs": 43
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry preserves the previous deployment and cleans the temporary file when replacement fails before rename",
+        "status": "passed",
+        "durationMs": 42
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry surfaces temporary cleanup failure while preserving the rename failure",
+        "status": "passed",
+        "durationMs": 41
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry does not remove a temporary file when exclusive creation fails before ownership",
+        "status": "passed",
+        "durationMs": 36
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry surfaces cleanup failure after a successful rename",
+        "status": "passed",
+        "durationMs": 44
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry preserves a write failure when closing the temporary file also fails",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry preserves a sync failure when closing the temporary file also fails",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry validates HealthAccessControl owner and all five persisted registry bindings",
+        "status": "passed",
+        "durationMs": 117
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry requires Ana to be an on-chain ConsentRegistry patient controller",
+        "status": "passed",
+        "durationMs": 62
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry registers Ana during the initial persistent deployment",
+        "status": "passed",
+        "durationMs": 546
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry preflights every institution before exposing any write transaction",
+        "status": "passed",
+        "durationMs": 91
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry applies the complete plan once and returns no writes on the repeat",
+        "status": "passed",
+        "durationMs": 169
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry fails closed when status observes an incomplete on-chain bootstrap",
+        "status": "passed",
+        "durationMs": 91
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry reads the policy before writes and rejects a divergent policy",
+        "status": "passed",
+        "durationMs": 79
+      },
+      {
+        "file": "test/network-status-import.test.ts",
+        "title": "network status import graph keeps bootstrap validation independent from the status runner",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries stores organizations and practitioners in AttributeRegistry",
+        "status": "passed",
+        "durationMs": 22
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries prevents non-owners from managing AttributeRegistry participants",
+        "status": "passed",
+        "durationMs": 24
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries stores and revokes patient consent in ConsentRegistry",
+        "status": "passed",
+        "durationMs": 34
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries rejects duplicate active consents for the same hash or scope",
+        "status": "passed",
+        "durationMs": 20
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries allows a new consent for the same scope after revocation",
+        "status": "passed",
+        "durationMs": 23
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries rejects consent records with empty pseudonymized scope fields",
+        "status": "passed",
+        "durationMs": 26
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries evaluates whether a consent matches scope and time without exposing clinical data",
+        "status": "passed",
+        "durationMs": 25
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries prevents unauthorized writers from registering consent for another data subject",
+        "status": "passed",
+        "durationMs": 21
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries versions patient Consents and requires the exact version for revocation and supersession",
+        "status": "passed",
+        "durationMs": 65
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries deactivates organizations, practitioners and licenses immediately",
+        "status": "passed",
+        "durationMs": 31
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries records access decisions in AuditRegistry without clinical data",
+        "status": "passed",
+        "durationMs": 17
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries prevents unauthorized accounts from writing audit decisions",
+        "status": "passed",
+        "durationMs": 11
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries records consent revocations in AuditRegistry without clinical data",
+        "status": "passed",
+        "durationMs": 15
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries stores resource integrity hashes without clinical data",
+        "status": "passed",
+        "durationMs": 18
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries anchors manifest commitments and transitions versions without clinical payloads",
+        "status": "passed",
+        "durationMs": 23
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries rejects inconsistent manifest versions and commitments",
+        "status": "passed",
+        "durationMs": 24
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries anchors manifest revocation and rejects delivery-state reuse",
+        "status": "passed",
+        "durationMs": 20
+      },
+      {
+        "file": "test/scientific-evidence.test.ts",
+        "title": "scientific evidence does not describe leaked clinical payload as no delivery",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "test/scientific-evidence.test.ts",
+        "title": "scientific evidence keeps failed samples separate and uses the nearest-rank p95",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "test/scientific-evidence.test.ts",
+        "title": "scientific evidence assigns every test file to exactly one supported category",
+        "status": "passed",
+        "durationMs": 0
+      }
+    ],
+    "stats": {
+      "passes": 417,
+      "failures": 0,
+      "pending": 0
+    }
+  }
+}

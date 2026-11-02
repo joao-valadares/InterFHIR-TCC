@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 2,
+  "runId": "2026-09-06T17-10-59-879Z-f48e9b4e",
+  "recordedAt": "2026-09-06T17:10:59.880Z",
+  "source": {
+    "revision": "49cdc8b348edcbec4cf95e8a53225e6dadad435c",
+    "dirty": true,
+    "sourceHash": "03a1b1511d96275290e4c6ddfd1857ff807ddc36af6bfaa8fbbf75e5a46d12d1",
+    "nodeVersion": "v24.10.0",
+    "platform": "win32"
+  },
+  "report": {
+    "schemaVersion": 2,
+    "generatedAt": "2026-09-06T17:10:59.877Z",
+    "executionMode": "live",
+    "readiness": [
+      {
+        "service": "keycloak",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-oidc",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-oidc",
+        "status": "ok"
+      },
+      {
+        "service": "institutional-identity-network",
+        "status": "ok"
+      },
+      {
+        "service": "institutional-blockchain-network",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-fhir",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-fhir",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-metadata-postgres",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-metadata-postgres",
+        "status": "ok"
+      },
+      {
+        "service": "besu-hospital-a-validator",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-jwks",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-jwks",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-udap",
+        "status": "ok"
+      },
+      {
+        "service": "hospital-a-gateway",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-udap-requester",
+        "status": "ok"
+      },
+      {
+        "service": "clinic-b-gateway",
+        "status": "ok"
+      }
+    ],
+    "summary": {
+      "total": 14,
+      "passed": 14,
+      "failed": 0,
+      "blocked": 0
+    },
+    "scenarios": [
+      {
+        "id": "authorized-consent-read",
+        "status": "passed",
+        "outcome": "authorized",
+        "dataDelivery": "authorized",
+        "httpStatus": 200,
+        "reason": "PERMIT",
+        "responseHash": "sha256:5ce07b6b070a33f111bb9fdcc9424a1222eb3c4d48a0d2668a95d2b3220198ec",
+        "observedReads": {
+          "commitmentCheck": 1,
+          "fhirVread": 1,
+          "auditEvent": 1,
+          "evaluatorVread": 1,
+          "evaluatorAuditSearch": 1
+        }
+      },
+      {
+        "id": "wrong-organization",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 403,
+        "reason": "UDAP_ORGANIZATION_MISMATCH",
+        "responseHash": "sha256:1a4af23cecb68241f9ffc284c74b42263fbb37900d167fc257a57ca9abefc914",
+        "observedReads": {}
+      },
+      {
+        "id": "wrong-practitioner",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 403,
+        "reason": "CONSENT_PRACTITIONER_MISMATCH",
+        "responseHash": "sha256:da3b4b3ad7bb837ad4882372f581c7105eff9e2ff963ceaebbde181bf0cfaa6b",
+        "observedReads": {}
+      },
+      {
+        "id": "purpose-mismatch",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 403,
+        "reason": "UDAP_PURPOSE_NOT_ALLOWED",
+        "responseHash": "sha256:9e41daa2f320c83520e6045ff36b7cb4a18da277ca54c91cf62995c4e2157dde",
+        "observedReads": {}
+      },
+      {
+        "id": "revoked-consent",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 403,
+        "reason": "SHARE_NOT_ACTIVE",
+        "responseHash": "sha256:b454026063064b829e6a1f9c0197249bfb54ed00d50b765fcc13198a46a7a47c",
+        "observedReads": {}
+      },
+      {
+        "id": "expired-consent",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 403,
+        "reason": "SHARE_OUTSIDE_VALIDITY_PERIOD",
+        "responseHash": "sha256:2c544f8241fe406e393e00cc86b8af7f31325187f9288a7aa48799bc91d05a6f",
+        "observedReads": {}
+      },
+      {
+        "id": "policy-version-mismatch",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 400,
+        "reason": "UNKNOWN_NETWORK_POLICY_VERSION",
+        "responseHash": "sha256:2a28f7a039db674cc908dd270babb5bdf373f1770224aa65a98ffeb82d947556",
+        "observedReads": {}
+      },
+      {
+        "id": "tampered-manifest",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 409,
+        "reason": "MANIFEST_STORED_COMMITMENT_MISMATCH",
+        "responseHash": "sha256:266ef6a19d2236b339dfbba5ae12f8830211ca3ff7283d5f37acdf40187b688e",
+        "observedReads": {}
+      },
+      {
+        "id": "tampered-fhir-version",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 409,
+        "reason": "MANIFEST_COMMITMENT_MISMATCH",
+        "responseHash": "sha256:fd7e8c10a1a63db7e1fffd517c463f79664fd464ae06cf88e1bdcc6ca78df6df",
+        "observedReads": {}
+      },
+      {
+        "id": "certificate-token-mismatch",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 403,
+        "reason": "CERTIFICATE_ORGANIZATION_MISMATCH",
+        "responseHash": "sha256:8ad3c1042382b19f144aef05be67bd8b1cc20e754e686490d477305fd052154f",
+        "observedReads": {}
+      },
+      {
+        "id": "assertion-replay",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 409,
+        "reason": "UDAP_ASSERTION_REPLAY",
+        "responseHash": "sha256:66362e732f032b2ad6d8011bc5beda40e4bf2784d5bd57bb8e7f32ac92ea8b0d",
+        "observedReads": {}
+      },
+      {
+        "id": "handoff-replay",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 409,
+        "reason": "HANDOFF_CODE_ALREADY_REDEEMED",
+        "responseHash": "sha256:f89eb92443f2b2d9b1f42384d5a826345c42b70d993b95dd4dce01542469365f",
+        "observedReads": {}
+      },
+      {
+        "id": "blockchain-unavailable",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 503,
+        "reason": "BLOCKCHAIN_UNAVAILABLE",
+        "responseHash": "sha256:1087e90d3f47c33c059d9fa5c7630b444534b747cfedbb9efd1ca032e5cd600e",
+        "observedReads": {}
+      },
+      {
+        "id": "metadata-postgres-unavailable",
+        "status": "passed",
+        "outcome": "denied",
+        "dataDelivery": "none",
+        "httpStatus": 503,
+        "reason": "METADATA_STORE_UNAVAILABLE",
+        "responseHash": "sha256:bd33e876d91b918e105d8c4e180d64ad687499428114531cefa6645e51df8390",
+        "observedReads": {}
+      }
+    ],
+    "evidence": {
+      "liveServices": true,
+      "realOidc": true,
+      "realMtls": true,
+      "realUdap": true,
+      "persistentBesu": true,
+      "persistentPostgres": true,
+      "hapiFhir": true
+    },
+    "limitations": [
+      "This local E2E is an integration proof, not a production capacity or throughput claim.",
+      "The report contains only states, counts, pseudonymous hashes and sanitized reasons."
+    ]
+  }
+}

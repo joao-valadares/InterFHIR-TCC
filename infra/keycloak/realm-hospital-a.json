@@ -1,0 +1,78 @@
+{
+  "realm": "hospital-a",
+  "enabled": true,
+  "displayName": "InterFHIR Hospital A (local demo only)",
+  "clients": [
+    {
+      "clientId": "interfhir-api",
+      "name": "InterFHIR API human demo client",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "local-only-hospital-a-api-secret",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "protocolMappers": [
+        { "name": "role", "protocol": "openid-connect", "protocolMapper": "oidc-usermodel-attribute-mapper", "config": { "user.attribute": "role", "claim.name": "role", "jsonType.label": "String", "id.token.claim": "true", "access.token.claim": "true", "userinfo.token.claim": "true" } },
+        { "name": "patientReference", "protocol": "openid-connect", "protocolMapper": "oidc-usermodel-attribute-mapper", "config": { "user.attribute": "patientReference", "claim.name": "patientReference", "jsonType.label": "String", "id.token.claim": "true", "access.token.claim": "true", "userinfo.token.claim": "true" } },
+        { "name": "practitionerReference", "protocol": "openid-connect", "protocolMapper": "oidc-usermodel-attribute-mapper", "config": { "user.attribute": "practitionerReference", "claim.name": "practitionerReference", "jsonType.label": "String", "id.token.claim": "true", "access.token.claim": "true", "userinfo.token.claim": "true" } },
+        { "name": "organizationReference", "protocol": "openid-connect", "protocolMapper": "oidc-usermodel-attribute-mapper", "config": { "user.attribute": "organizationReference", "claim.name": "organizationReference", "jsonType.label": "String", "id.token.claim": "true", "access.token.claim": "true", "userinfo.token.claim": "true" } },
+        { "name": "roleCode", "protocol": "openid-connect", "protocolMapper": "oidc-usermodel-attribute-mapper", "config": { "user.attribute": "roleCode", "claim.name": "roleCode", "jsonType.label": "String", "id.token.claim": "true", "access.token.claim": "true", "userinfo.token.claim": "true" } },
+        { "name": "specialtyCode", "protocol": "openid-connect", "protocolMapper": "oidc-usermodel-attribute-mapper", "config": { "user.attribute": "specialtyCode", "claim.name": "specialtyCode", "jsonType.label": "String", "id.token.claim": "true", "access.token.claim": "true", "userinfo.token.claim": "true" } },
+        { "name": "interfhir-api-audience", "protocol": "openid-connect", "protocolMapper": "oidc-audience-mapper", "config": { "included.client.audience": "interfhir-api", "id.token.claim": "false", "access.token.claim": "true", "userinfo.token.claim": "false" } }
+      ]
+    },
+    {
+      "clientId": "hospital-a-gateway",
+      "name": "Hospital A gateway (local demo only)",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "local-only-hospital-a-gateway-secret",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "protocolMappers": [
+        { "name": "interfhir-api-audience", "protocol": "openid-connect", "protocolMapper": "oidc-audience-mapper", "config": { "included.client.audience": "interfhir-api", "id.token.claim": "false", "access.token.claim": "true", "userinfo.token.claim": "false" } }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "paciente.ana",
+      "email": "paciente.ana@hospital-a.local",
+      "firstName": "Ana",
+      "lastName": "Paciente",
+      "enabled": true,
+      "emailVerified": true,
+      "requiredActions": [],
+      "attributes": { "patientReference": ["Patient/pat-ana"], "organizationReference": ["Organization/hospital-a"], "role": ["patient"] },
+      "credentials": [{ "type": "password", "value": "local-only-ana-password", "temporary": false }]
+    },
+    {
+      "username": "profissional.ana",
+      "email": "profissional.ana@hospital-a.local",
+      "firstName": "Ana",
+      "lastName": "Profissional",
+      "enabled": true,
+      "emailVerified": true,
+      "requiredActions": [],
+      "attributes": { "practitionerReference": ["Practitioner/ana"], "organizationReference": ["Organization/hospital-a"], "role": ["practitioner"], "roleCode": ["physician"], "specialtyCode": ["general-practice"] },
+      "credentials": [{ "type": "password", "value": "local-only-professional-password", "temporary": false }]
+    },
+    {
+      "username": "admin.hospital",
+      "email": "admin.hospital@hospital-a.local",
+      "firstName": "Admin",
+      "lastName": "Hospital",
+      "enabled": true,
+      "emailVerified": true,
+      "requiredActions": [],
+      "attributes": { "organizationReference": ["Organization/hospital-a"], "role": ["administrator"] },
+      "credentials": [{ "type": "password", "value": "local-only-admin-password", "temporary": false }]
+    }
+  ]
+}

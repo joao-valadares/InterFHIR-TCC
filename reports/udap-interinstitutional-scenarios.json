@@ -1,0 +1,1376 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-01T12:59:26.241Z",
+  "executionMode": "environment-blocked",
+  "environment": {
+    "hospitalAFhirMetadata": "unavailable",
+    "clinicBFhirMetadata": "unavailable",
+    "blockchain": "not-configured",
+    "metadataDatabase": "not-configured",
+    "liveBaseline": "FHIR metadata unavailable",
+    "liveRequesterPath": "createUdapClient+createRequestingInstitutionClient"
+  },
+  "runNamespace": "udap-15dc8fc9-8277-4808-b5b9-29f5b412c50e",
+  "limitations": [
+    "Local timings are not a production capacity or throughput claim.",
+    "This report never contains clinical payloads, FHIR locators, Consent content, certificates, tokens, or raw identities.",
+    "Unit-test evidence validates enforcement controls but is not represented as live HTTP execution or live latency."
+  ],
+  "coverage": {
+    "executed": 19,
+    "liveBaseline": 0,
+    "unitTest": 19,
+    "blocked": 6,
+    "source": "unit-test"
+  },
+  "summary": {
+    "total": 25,
+    "passed": 19,
+    "failed": 0,
+    "blocked": 6
+  },
+  "scenarios": [
+    {
+      "id": "authorized-treat",
+      "title": "Authorized directed TREAT read",
+      "status": "blocked",
+      "outcome": "blocked",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:9f9da32789d7d1a67ca0940f15cdc93c939fa223d26a7fd1cf57ad2c654de6b7",
+        "shareHash": "sha256:135174295980a11266bb7b360a3a08032a0326bb1681ef2def8f781d8cd0ab08"
+      },
+      "responseMetadata": {
+        "httpStatus": 503,
+        "error": "DEPENDENCY_UNAVAILABLE"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "blocked",
+        "limitation": "FHIR metadata dependency was unavailable; no authorization result was fabricated."
+      }
+    },
+    {
+      "id": "missing-consent",
+      "title": "Denied without active Consent",
+      "status": "blocked",
+      "outcome": "blocked",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:cbfa473a78f840df92599814e10bd6a4efe48c39acc3c38fbb75473eb162631f",
+        "shareHash": "sha256:8c9f445c5bdfd2a1e0929942a9488af083ca50f8d1deccd2bdf56748a71408d9"
+      },
+      "responseMetadata": {
+        "httpStatus": 503,
+        "error": "CONSENT_NOT_ACTIVE"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "blocked",
+        "limitation": "FHIR metadata dependency was unavailable; no authorization result was fabricated."
+      }
+    },
+    {
+      "id": "revoked-consent",
+      "title": "Denied after Consent revocation",
+      "status": "blocked",
+      "outcome": "blocked",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:c32d0b2ebe39dee69eae9d6297fe8a96261ffbf80345b07ecd87e9498579ef5f",
+        "shareHash": "sha256:546738c78c2edb5265961cbc28e49979c0b6048363d2a86484e864334c96d6d6"
+      },
+      "responseMetadata": {
+        "httpStatus": 503,
+        "error": "CONSENT_REVOKED"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "blocked",
+        "limitation": "FHIR metadata dependency was unavailable; no authorization result was fabricated."
+      }
+    },
+    {
+      "id": "expired-consent",
+      "title": "Denied after Consent expiration",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:bc77bf997515fad3be1fbc4b3ca02641f034bb0758a6ddd810730b559c0d5526",
+        "shareHash": "sha256:c013f43ce63328a2243fa3521d2c7df9d17b3e218becd102906ad0bd1fec50e8"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "CONSENT_EXPIRED"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "test/health-access-control.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "purpose-mismatch",
+      "title": "Denied for an incompatible purpose",
+      "status": "blocked",
+      "outcome": "blocked",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:46357bc2f3bd58f69504ba9e7e7f1ee97c5fe3fd18356a8e2a0f045ccbfb0c95",
+        "shareHash": "sha256:8bc52e623ede63198ff9de3acf7981487493342387c7987c8a30bd574ca5825d"
+      },
+      "responseMetadata": {
+        "httpStatus": 503,
+        "error": "PURPOSE_NOT_ALLOWED"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "blocked",
+        "limitation": "FHIR metadata dependency was unavailable; no authorization result was fabricated."
+      }
+    },
+    {
+      "id": "non-grantee-organization",
+      "title": "Denied for an organization outside the directed share",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:a1390774fe566728ef48335bbb03fbb9157963ae1b3c7748c17eb6a2bbb94132",
+        "shareHash": "sha256:725d37bfa44f6be3c4aefb1127014b63081f9b3d8cce7e9fe9716c931db3b8c7"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "SHARE_GRANTEE_MISMATCH"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/share-grant.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "practitioner-without-role",
+      "title": "Denied for a practitioner without required role",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:00ac942ccf312016ac33cf94f61bffbcf5d75752f1424431e0bccf1ab72c4aea",
+        "shareHash": "sha256:f98a365bfa2a30909f687b7a5124e3ccaf6d8532f1bd71145df786cd52ea8bb5"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "PRACTITIONER_ROLE_NOT_ALLOWED"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/api-auth-boundary.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "practitioner-wrong-organization",
+      "title": "Denied for a practitioner from another organization",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:f844e73b8e3772cc2870e1069dcc802d687c7355306922d9b238b2ea667ed7cd",
+        "shareHash": "sha256:85b761bde70f856b14c1b38fbe0f274dc4e8d0bc4e9fe3dc4185c2b169b7e39c"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "PRACTITIONER_ORGANIZATION_MISMATCH"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/share-grant.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "untrusted-certificate",
+      "title": "Denied for an untrusted mTLS certificate",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:ea4c3ba843c21b44a1715e937627a56f087f9297b27b18c11d1b51386dac6b7c",
+        "shareHash": "sha256:3af693d24fc74700552a1cb16a7c5de9c81c717c0bd16a74389d8696eb2dea00"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "MTLS_CERTIFICATE_NOT_TRUSTED"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-applicable"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": false
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/http-authentication.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "certificate-cnf-mismatch",
+      "title": "Denied when certificate and token cnf differ",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:c02ae68673221402bbc5cae20b03a86cc94d643bcccd76b699d8a81ab7d2f2bf",
+        "shareHash": "sha256:b8e7fa181b89b1f5e85812e70ceb61c31617e708330c3316e4860bd823af30d3"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "MTLS_CNF_MISMATCH"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-applicable"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": false
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/udap-token-service.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "unknown-oidc-issuer",
+      "title": "Denied for an unknown OIDC issuer",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:4163a4943e9025274eda7388122f5ebf16d86bf1350d1a4ac4b111ff0ba2ed67",
+        "shareHash": "sha256:785e75ca9b94a154e8f2d6560b3b301803e7c11bcf58aa5435ae019649bfd26f"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "OIDC_ISSUER_NOT_TRUSTED"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-applicable"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": false
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/oidc-verifier.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "invalid-audience",
+      "title": "Denied for an invalid audience",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:59f461353f5ac9793104ab9ac48248758829140f76102158c07687044de258e5",
+        "shareHash": "sha256:3a9b78239d26f70b445e5bd05381ba896055d64d1c84888b98d1676a3b3389ab"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "OIDC_AUDIENCE_INVALID"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-applicable"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": false
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/udap-registration.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "expired-assertion",
+      "title": "Denied for an expired UDAP assertion",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:748222b48b898a1649ad9b9d05a29700b638db994d2d8ee1f2d2ad681a99fcff",
+        "shareHash": "sha256:8581e0085220bd57018badb3eb4cb9b70735faa00880acb0e32f095f1b4bedca"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "UDAP_ASSERTION_EXPIRED"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-applicable"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": false
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/udap-registration.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "jti-replay",
+      "title": "Denied for a replayed assertion jti",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:e3504137c8041d43ebf3d3317195bcfd8f9e70700a46f52bfa6ddad8054e5140",
+        "shareHash": "sha256:827e7882da6689f55a52cb80facbff6ec200197759408d5e33cd7227ba780980"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "UDAP_ASSERTION_REPLAYED"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-applicable"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": false
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/udap-token-service.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "unredeemed-share",
+      "title": "Denied before one-time handoff redemption",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:3331eb6ed563b3a1d2a9af7a115be06cd115271817fbbfde3c657be656fa253d",
+        "shareHash": "sha256:4a2febee8cbd18a2e38482381d1f1b4345db794cb3c0ac7f33ec2b8ed74fc441"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "SHARE_NOT_REDEEMED"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/postgres-share-repository.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "handoff-code-replay",
+      "title": "Denied for a replayed handoff code",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:9253a69e5b8dd980f725e920e5cd4cdd55b1cfe80095e0acb9cedcb1d28a960e",
+        "shareHash": "sha256:a2d2711f6ee7a910a4388d2460fdc4f8f1b78b1db2c09a1cdfe72d7ecfa02e08"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "HANDOFF_CODE_ALREADY_REDEEMED"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/custodian-access-service.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "postgres-manifest-tamper",
+      "title": "Denied for a tampered PostgreSQL manifest",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:82d61513ffc22d6d586647e1566714506c908e22e0e2e0405eb130ec37cdf0f3",
+        "shareHash": "sha256:ad1bbeff7ddab54b288b4da8c19020003d0ce98bdc2e02b12f2d1ed9cbc2e416"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "MANIFEST_SIGNATURE_INVALID"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/postgres-manifest-repository.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "onchain-commitment-mismatch",
+      "title": "Denied for an on-chain commitment mismatch",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:f9278c74b348fd1f334567a74e5d877a8a55af320f89f5ab1e06f42f9b3bb37a",
+        "shareHash": "sha256:3bfa21218878af192d2a5478dde7d88a86430f8f30032e14eadc3a4249dfafd8"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "MANIFEST_COMMITMENT_MISMATCH"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/manifest-commitment-verifier.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "fhir-version-tamper",
+      "title": "Denied for a mismatched FHIR version hash",
+      "status": "blocked",
+      "outcome": "blocked",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:6b531139b9da7a3fed8ea3347b1205597c315757c5fe7c558c5fa3ee1b8c070e",
+        "shareHash": "sha256:8829af58ce2dd875891cce6f26da7956d6cec5f99455b2241b4f5303e12c117d"
+      },
+      "responseMetadata": {
+        "httpStatus": 503,
+        "error": "FHIR_VERSION_HASH_MISMATCH"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "blocked",
+        "limitation": "FHIR metadata dependency was unavailable; no authorization result was fabricated."
+      }
+    },
+    {
+      "id": "legitimate-new-version",
+      "title": "Allows a legitimately published next FHIR version",
+      "status": "passed",
+      "outcome": "authorized",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": true,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:6476b431e4d2793c07ea4c00d3aa8105d2be1ab68d5ef72dc4299fe8e5e823ff",
+        "shareHash": "sha256:ebd4bc34538aed895695ba23ba250ac7451b13c405886a8aac370dd451823d5f"
+      },
+      "responseMetadata": {
+        "httpStatus": 200
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": false,
+        "manifestFirst": true,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/manifest-publication-service.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "institutional-deny-after-onchain-permit",
+      "title": "Local institutional policy denies after on-chain permit",
+      "status": "blocked",
+      "outcome": "blocked",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:9194a88c6b944d1de61ebb6fac4ffbeeaa22b1b7ae03d4cb613f07ef01e869b6",
+        "shareHash": "sha256:4bf1dbd66261dfe39d36121b03039fea1aabc6ca2e0359055ac4586b8f9e45f4"
+      },
+      "responseMetadata": {
+        "httpStatus": 503,
+        "error": "INSTITUTIONAL_POLICY_DENY"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "blocked",
+        "limitation": "FHIR metadata dependency was unavailable; no authorization result was fabricated."
+      }
+    },
+    {
+      "id": "blockchain-unavailable",
+      "title": "Fails closed when blockchain is unavailable",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:6fe6b17186eee09b8e4546d440e06e77678c69641f0c41bcad67551fa88f58fd",
+        "shareHash": "sha256:336889fb2830fc8fbbd109b0e2e4852e0d30b2eabaac565b1068a46c6a69a109"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "BLOCKCHAIN_UNAVAILABLE"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-applicable"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": false
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/ethers-access-client.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "fhir-unavailable",
+      "title": "Fails closed when the custodian FHIR vault is unavailable",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:2b0e9826587f36962801f8566a7a317b8e22db2e90a23e0ab949f3f38ac63d8b",
+        "shareHash": "sha256:3dce178a0e386021e220abed703fdbe70f8fb277f71c9cf32cb2ed19c858f3dc"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "FHIR_UNAVAILABLE"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-applicable"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": false
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/fhir-health.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "metadata-db-unavailable",
+      "title": "Fails closed when custodian metadata storage is unavailable",
+      "status": "passed",
+      "outcome": "denied",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:85c6a242c7217f67ee6d836055e8910cde36ad95aa33210fc1562851a91f8be0",
+        "shareHash": "sha256:dad996db8aa6bbe63f4bbf3a0df4ca57d1143431e8308906f812c88ef06b79f5"
+      },
+      "responseMetadata": {
+        "httpStatus": 403,
+        "error": "METADATA_DB_UNAVAILABLE"
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": true,
+        "manifestFirst": false,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-applicable"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": false
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/api-handler.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    },
+    {
+      "id": "clinic-b-no-clinical-copy",
+      "title": "Clinic B receives no persistent clinical FHIR copy",
+      "status": "passed",
+      "outcome": "authorized",
+      "reason": "ENVIRONMENT_UNAVAILABLE",
+      "payloadPresent": false,
+      "requestMetadata": {
+        "method": "POST",
+        "path": "/institutional/access/read",
+        "requestHash": "sha256:7ba32a07e5ec62850b07da9ba9d2b4c274ed88413b87f01ccf80d176b2e3bc42",
+        "shareHash": "sha256:a3f61a7b788c79fd10fc34dea7210da712c5a8a11c8b60174a6976eeea778835"
+      },
+      "responseMetadata": {
+        "httpStatus": 200
+      },
+      "securityEvidence": {
+        "deniedWithoutClinicalPayload": false,
+        "manifestFirst": true,
+        "identityFromTrustedContext": true,
+        "commitmentChecked": "not-executed"
+      },
+      "componentReads": {
+        "oidc": 0,
+        "udap": 0,
+        "mtlsGateway": 0,
+        "manifest": 0,
+        "blockchain": 0,
+        "fhirVread": 0,
+        "auditEvent": 0,
+        "clinicBFhirWrites": 0
+      },
+      "blockchain": {
+        "applicable": true
+      },
+      "timingsMs": {
+        "oidcLocal": null,
+        "udapDiscoveryRegistrationToken": null,
+        "mtlsGateway": null,
+        "manifestLookupVerification": null,
+        "blockchainRequestFinality": null,
+        "fhirVread": null,
+        "canonicalizationHash": null,
+        "auditEvent": null,
+        "total": null
+      },
+      "execution": {
+        "mode": "environment-blocked",
+        "coverageKind": "unit-test",
+        "sourceTest": "middleware/test/requesting-institution-client.test.ts",
+        "limitation": "Unit-test evidence validates the enforcement control only; it is not an HTTP end-to-end measurement."
+      }
+    }
+  ]
+}

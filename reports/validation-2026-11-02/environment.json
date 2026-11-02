@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-11-01T18:01:17.9703564Z",
+  "purpose": "Clean-clone reproduction of the publication candidate",
+  "sourceRevision": "f9f6a1a56644fc3280923e695c207a0ec52a85c5",
+  "host": {
+    "os": "Microsoft Windows 11 Home Single Language",
+    "version": "10.0.26200",
+    "cpu": "11th Gen Intel(R) Core(TM) i5-11300H @ 3.10GHz",
+    "physicalCores": 4,
+    "logicalProcessors": 8,
+    "memoryBytes": 16952647680,
+    "node": "v24.10.0",
+    "npm": "11.6.1",
+    "git": "git version 2.51.0.windows.2",
+    "openssl": "OpenSSL 3.6.1 27 Jan 2026 (Library: OpenSSL 3.6.1 27 Jan 2026)"
+  },
+  "docker": {
+    "version": "28.5.1",
+    "compose": "2.40.0-desktop.1",
+    "osType": "linux",
+    "architecture": "x86_64",
+    "cpus": 8,
+    "memoryBytes": 8212672512
+  },
+  "initialState": {
+    "freshGitClone": true,
+    "reusedNodeModules": false,
+    "reusedPki": false,
+    "reusedVolumes": false,
+    "baseImageCacheReused": true,
+    "sourceLineEndings": "LF",
+    "subnet": "172.31.242.0/24"
+  }
+}

@@ -1,0 +1,626 @@
+{
+  "contracts": {
+    "contracts/AttributeRegistry.sol:AttributeRegistry": {
+      "sourceName": "contracts/AttributeRegistry.sol",
+      "contractName": "AttributeRegistry",
+      "proxyChain": [],
+      "deployment": {
+        "min": 808849,
+        "max": 808849,
+        "avg": 808849,
+        "median": 808849,
+        "count": 28,
+        "runtimeSize": 3395
+      },
+      "functions": {
+        "getOrganization": {
+          "min": 24290,
+          "max": 24290,
+          "avg": 24290,
+          "median": 24290,
+          "count": 2
+        },
+        "getPractitioner": {
+          "min": 28915,
+          "max": 28915,
+          "avg": 28915,
+          "median": 28915,
+          "count": 2
+        },
+        "practitionerHashByAccount": {
+          "min": 23938,
+          "max": 23938,
+          "avg": 23938,
+          "median": 23938,
+          "count": 1
+        },
+        "registerOrganization": {
+          "min": 48776,
+          "max": 48788,
+          "avg": 48779,
+          "median": 48776,
+          "count": 4
+        },
+        "registerPractitioner": {
+          "min": 120466,
+          "max": 120466,
+          "avg": 120466,
+          "median": 120466,
+          "count": 2
+        },
+        "setOrganizationActive": {
+          "min": 31348,
+          "max": 31348,
+          "avg": 31348,
+          "median": 31348,
+          "count": 1
+        },
+        "setPractitionerActive": {
+          "min": 33368,
+          "max": 33368,
+          "avg": 33368,
+          "median": 33368,
+          "count": 1
+        },
+        "setPractitionerLicenseActive": {
+          "min": 33434,
+          "max": 33434,
+          "avg": 33434,
+          "median": 33434,
+          "count": 1
+        },
+        "transferOwnership": {
+          "min": 27050,
+          "max": 27062,
+          "avg": 27060,
+          "median": 27062,
+          "count": 20
+        }
+      }
+    },
+    "contracts/AuditRegistry.sol:AuditRegistry": {
+      "sourceName": "contracts/AuditRegistry.sol",
+      "contractName": "AuditRegistry",
+      "proxyChain": [],
+      "deployment": {
+        "min": 633117,
+        "max": 633117,
+        "avg": 633117,
+        "median": 633117,
+        "count": 28,
+        "runtimeSize": 2374
+      },
+      "functions": {
+        "authorizeWriter": {
+          "min": 44321,
+          "max": 44333,
+          "avg": 44331,
+          "median": 44333,
+          "count": 18
+        },
+        "decisions": {
+          "min": 38720,
+          "max": 38720,
+          "avg": 38720,
+          "median": 38720,
+          "count": 1
+        },
+        "recordConsentRevocation": {
+          "min": 121708,
+          "max": 121708,
+          "avg": 121708,
+          "median": 121708,
+          "count": 1
+        },
+        "recordDecision": {
+          "min": 213692,
+          "max": 213692,
+          "avg": 213692,
+          "median": 213692,
+          "count": 1
+        },
+        "revocations": {
+          "min": 30248,
+          "max": 30248,
+          "avg": 30248,
+          "median": 30248,
+          "count": 1
+        }
+      }
+    },
+    "contracts/ConsentRegistry.sol:ConsentRegistry": {
+      "sourceName": "contracts/ConsentRegistry.sol",
+      "contractName": "ConsentRegistry",
+      "proxyChain": [],
+      "deployment": {
+        "min": 2885834,
+        "max": 2885834,
+        "avg": 2885834,
+        "median": 2885834,
+        "count": 32,
+        "runtimeSize": 13111
+      },
+      "functions": {
+        "authorizePatientConsentController": {
+          "min": 45991,
+          "max": 46003,
+          "avg": 45999,
+          "median": 46003,
+          "count": 26
+        },
+        "authorizeWriter": {
+          "min": 44269,
+          "max": 44281,
+          "avg": 44278,
+          "median": 44281,
+          "count": 21
+        },
+        "consents": {
+          "min": 37405,
+          "max": 37405,
+          "avg": 37405,
+          "median": 37405,
+          "count": 2
+        },
+        "findConsentHash": {
+          "min": 26250,
+          "max": 26250,
+          "avg": 26250,
+          "median": 26250,
+          "count": 2
+        },
+        "isConsentValid": {
+          "min": 42279,
+          "max": 42562,
+          "avg": 42397,
+          "median": 42374,
+          "count": 4
+        },
+        "patientConsentControllers": {
+          "min": 24015,
+          "max": 24027,
+          "avg": 24017,
+          "median": 24015,
+          "count": 11
+        },
+        "patientConsentProjections": {
+          "min": 30917,
+          "max": 30917,
+          "avg": 30917,
+          "median": 30917,
+          "count": 2
+        },
+        "patientConsents": {
+          "min": 39855,
+          "max": 39855,
+          "avg": 39855,
+          "median": 39855,
+          "count": 4
+        },
+        "registerConsent": {
+          "min": 194018,
+          "max": 208925,
+          "avg": 205944,
+          "median": 208925,
+          "count": 5
+        },
+        "registerConsentFor": {
+          "min": 211596,
+          "max": 211596,
+          "avg": 211596,
+          "median": 211596,
+          "count": 1
+        },
+        "registerPatientConsentFor": {
+          "min": 553387,
+          "max": 553387,
+          "avg": 553387,
+          "median": 553387,
+          "count": 1
+        },
+        "revokeConsent": {
+          "min": 35331,
+          "max": 35331,
+          "avg": 35331,
+          "median": 35331,
+          "count": 3
+        },
+        "revokePatientConsentFor": {
+          "min": 54627,
+          "max": 54627,
+          "avg": 54627,
+          "median": 54627,
+          "count": 1
+        },
+        "supersedePatientConsentFor": {
+          "min": 342418,
+          "max": 342418,
+          "avg": 342418,
+          "median": 342418,
+          "count": 1
+        }
+      }
+    },
+    "contracts/HealthAccessControl.sol:HealthAccessControl": {
+      "sourceName": "contracts/HealthAccessControl.sol",
+      "contractName": "HealthAccessControl",
+      "proxyChain": [],
+      "deployment": {
+        "min": 5332558,
+        "max": 5332582,
+        "avg": 5332578,
+        "median": 5332582,
+        "count": 24,
+        "runtimeSize": 22431
+      },
+      "functions": {
+        "attributeRegistry": {
+          "min": 21326,
+          "max": 21326,
+          "avg": 21326,
+          "median": 21326,
+          "count": 9
+        },
+        "auditRegistry": {
+          "min": 21381,
+          "max": 21381,
+          "avg": 21381,
+          "median": 21381,
+          "count": 7
+        },
+        "authorizedPeps": {
+          "min": 23819,
+          "max": 23819,
+          "avg": 23819,
+          "median": 23819,
+          "count": 10
+        },
+        "computeInstitutionalRequestHash": {
+          "min": 36690,
+          "max": 36690,
+          "avg": 36690,
+          "median": 36690,
+          "count": 1
+        },
+        "consentRegistry": {
+          "min": 21401,
+          "max": 21401,
+          "avg": 21401,
+          "median": 21401,
+          "count": 8
+        },
+        "createPolicy": {
+          "min": 165915,
+          "max": 165915,
+          "avg": 165915,
+          "median": 165915,
+          "count": 4
+        },
+        "createPolicyVersion": {
+          "min": 128176,
+          "max": 165176,
+          "avg": 162509,
+          "median": 165176,
+          "count": 14
+        },
+        "deactivatePolicy": {
+          "min": 31562,
+          "max": 31562,
+          "avg": 31562,
+          "median": 31562,
+          "count": 2
+        },
+        "finalizeEnforcement": {
+          "min": 47755,
+          "max": 47755,
+          "avg": 47755,
+          "median": 47755,
+          "count": 1
+        },
+        "getActivePolicy": {
+          "min": 32102,
+          "max": 32102,
+          "avg": 32102,
+          "median": 32102,
+          "count": 9
+        },
+        "institutionRegistry": {
+          "min": 21403,
+          "max": 21403,
+          "avg": 21403,
+          "median": 21403,
+          "count": 12
+        },
+        "latestPolicyVersion": {
+          "min": 24117,
+          "max": 24117,
+          "avg": 24117,
+          "median": 24117,
+          "count": 5
+        },
+        "organizations": {
+          "min": 27900,
+          "max": 27900,
+          "avg": 27900,
+          "median": 27900,
+          "count": 11
+        },
+        "owner": {
+          "min": 21335,
+          "max": 21335,
+          "avg": 21335,
+          "median": 21335,
+          "count": 12
+        },
+        "policies": {
+          "min": 24352,
+          "max": 24352,
+          "avg": 24352,
+          "median": 24352,
+          "count": 1
+        },
+        "practitioners": {
+          "min": 33072,
+          "max": 33072,
+          "avg": 33072,
+          "median": 33072,
+          "count": 11
+        },
+        "registerConsent": {
+          "min": 218210,
+          "max": 218210,
+          "avg": 218210,
+          "median": 218210,
+          "count": 3
+        },
+        "registerDirectedConsent": {
+          "min": 262841,
+          "max": 283137,
+          "avg": 272989,
+          "median": 272989,
+          "count": 2
+        },
+        "registerInstitution": {
+          "min": 94928,
+          "max": 95156,
+          "avg": 95121,
+          "median": 95156,
+          "count": 13
+        },
+        "registerOrganization": {
+          "min": 53805,
+          "max": 54033,
+          "avg": 54005,
+          "median": 54033,
+          "count": 16
+        },
+        "registerPatientConsent": {
+          "min": 568542,
+          "max": 608690,
+          "avg": 572557,
+          "median": 568542,
+          "count": 10
+        },
+        "registerPractitioner": {
+          "min": 49876,
+          "max": 126676,
+          "avg": 118119,
+          "median": 126676,
+          "count": 18
+        },
+        "registerResourceHash": {
+          "min": 96846,
+          "max": 96858,
+          "avg": 96857,
+          "median": 96858,
+          "count": 13
+        },
+        "requestAccess": {
+          "min": 255183,
+          "max": 255183,
+          "avg": 255183,
+          "median": 255183,
+          "count": 1
+        },
+        "requestInstitutionalAccess": {
+          "min": 90692,
+          "max": 426361,
+          "avg": 316722,
+          "median": 426361,
+          "count": 12
+        },
+        "resourceRegistry": {
+          "min": 21356,
+          "max": 21356,
+          "avg": 21356,
+          "median": 21356,
+          "count": 6
+        },
+        "revokePatientConsent": {
+          "min": 172309,
+          "max": 172309,
+          "avg": 172309,
+          "median": 172309,
+          "count": 1
+        },
+        "setInstitutionActive": {
+          "min": 29666,
+          "max": 29666,
+          "avg": 29666,
+          "median": 29666,
+          "count": 1
+        },
+        "setOrganizationActive": {
+          "min": 34677,
+          "max": 34677,
+          "avg": 34677,
+          "median": 34677,
+          "count": 1
+        },
+        "setPepAuthorization": {
+          "min": 44125,
+          "max": 44353,
+          "avg": 44320,
+          "median": 44353,
+          "count": 14
+        },
+        "setPractitionerActive": {
+          "min": 36698,
+          "max": 36698,
+          "avg": 36698,
+          "median": 36698,
+          "count": 1
+        },
+        "setPractitionerLicenseActive": {
+          "min": 36754,
+          "max": 36754,
+          "avg": 36754,
+          "median": 36754,
+          "count": 1
+        },
+        "verifyAccess": {
+          "min": 29810,
+          "max": 29810,
+          "avg": 29810,
+          "median": 29810,
+          "count": 2
+        },
+        "verifyInstitutionalAccess": {
+          "min": 54134,
+          "max": 130366,
+          "avg": 91050,
+          "median": 80249,
+          "count": 8
+        }
+      }
+    },
+    "contracts/InstitutionRegistry.sol:InstitutionRegistry": {
+      "sourceName": "contracts/InstitutionRegistry.sol",
+      "contractName": "InstitutionRegistry",
+      "proxyChain": [],
+      "deployment": {
+        "min": 454537,
+        "max": 454537,
+        "avg": 454537,
+        "median": 454537,
+        "count": 4,
+        "runtimeSize": 1860
+      },
+      "functions": {
+        "getInstitution": {
+          "min": 28469,
+          "max": 28469,
+          "avg": 28469,
+          "median": 28469,
+          "count": 12
+        },
+        "isGatewayAuthorized": {
+          "min": 28969,
+          "max": 28981,
+          "avg": 28973,
+          "median": 28969,
+          "count": 3
+        },
+        "owner": {
+          "min": 21301,
+          "max": 21301,
+          "avg": 21301,
+          "median": 21301,
+          "count": 1
+        },
+        "registerInstitution": {
+          "min": 91752,
+          "max": 91752,
+          "avg": 91752,
+          "median": 91752,
+          "count": 2
+        },
+        "setInstitutionActive": {
+          "min": 26270,
+          "max": 26270,
+          "avg": 26270,
+          "median": 26270,
+          "count": 1
+        },
+        "setInstitutionGateway": {
+          "min": 29899,
+          "max": 29899,
+          "avg": 29899,
+          "median": 29899,
+          "count": 1
+        }
+      }
+    },
+    "contracts/ResourceRegistry.sol:ResourceRegistry": {
+      "sourceName": "contracts/ResourceRegistry.sol",
+      "contractName": "ResourceRegistry",
+      "proxyChain": [],
+      "deployment": {
+        "min": 869770,
+        "max": 869770,
+        "avg": 869770,
+        "median": 869770,
+        "count": 29,
+        "runtimeSize": 3675
+      },
+      "functions": {
+        "anchorManifestVersion": {
+          "min": 94408,
+          "max": 94408,
+          "avg": 94408,
+          "median": 94408,
+          "count": 3
+        },
+        "isResourceHashValid": {
+          "min": 29278,
+          "max": 29278,
+          "avg": 29278,
+          "median": 29278,
+          "count": 2
+        },
+        "latestManifestVersion": {
+          "min": 24085,
+          "max": 24085,
+          "avg": 24085,
+          "median": 24085,
+          "count": 1
+        },
+        "manifests": {
+          "min": 26591,
+          "max": 26591,
+          "avg": 26591,
+          "median": 26591,
+          "count": 3
+        },
+        "registerResourceHash": {
+          "min": 93497,
+          "max": 93497,
+          "avg": 93497,
+          "median": 93497,
+          "count": 1
+        },
+        "revokeManifestVersion": {
+          "min": 40907,
+          "max": 40907,
+          "avg": 40907,
+          "median": 40907,
+          "count": 1
+        },
+        "supersedeAndAnchorManifestVersion": {
+          "min": 92084,
+          "max": 92084,
+          "avg": 92084,
+          "median": 92084,
+          "count": 1
+        },
+        "transferOwnership": {
+          "min": 26993,
+          "max": 27005,
+          "avg": 27003,
+          "median": 27005,
+          "count": 19
+        }
+      }
+    }
+  }
+}

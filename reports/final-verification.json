@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "task": "12",
+  "generatedAt": "2026-08-01T22:41:22.1160872Z",
+  "repository": {
+    "branch": "codex/consent-centered-network-authorization",
+    "preTask12Head": "d0705b01904494762656336b1c6512385c59b889",
+    "task12ArtifactBaseline": "0e42670672feba936c89f6ec1ca2bfb2c75a23d4",
+    "workingTree": ".worktrees/consent-centered-network-authorization",
+    "sanitized": true
+  },
+  "typecheck": "passed",
+  "compile": "passed",
+  "contractTests": "passed",
+  "middlewareTests": "passed",
+  "postgresIntegration": "passed",
+  "composeConfig": "passed",
+  "keycloakSmoke": "blocked",
+  "mtlsSmoke": "blocked",
+  "udapSmoke": "blocked",
+  "besuPersistence": "blocked",
+  "realE2E": "blocked",
+  "manualRunbookReviewed": true,
+  "negativePayloadInvariant": true,
+  "clinicalDataOnChain": false,
+  "securityAudit": "blocked",
+  "timestamps": {
+    "artifactGeneratedAt": "2026-08-01T22:41:22.1160872Z",
+    "latestE2EReportGeneratedAt": "2026-08-01T22:39:20.214Z",
+    "gasReportsGeneratedAt": "2026-08-01T22:31:59.7404650Z",
+    "hapiMetadataObservedAt": "2026-08-01T22:31:05.7527113Z",
+    "metadataPostgresIntegrationObservedAt": "2026-08-01T22:31:45.4334980Z"
+  },
+  "commands": [
+    {
+      "command": "npm run typecheck",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-08-01T22:16:10.2813978Z",
+      "endedAt": "2026-08-01T22:16:15.7557505Z",
+      "result": "tsc --noEmit completed without diagnostics."
+    },
+    {
+      "command": "npm run compile",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-08-01T22:16:20.9954538Z",
+      "endedAt": "2026-08-01T22:16:24.4288238Z",
+      "result": "No contracts to compile."
+    },
+    {
+      "command": "npm run test:contracts",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-08-01T22:16:29.1727879Z",
+      "endedAt": "2026-08-01T22:16:36.4517708Z",
+      "result": "40/40 Mocha tests passed."
+    },
+    {
+      "command": "npm run test:middleware",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-08-01T22:16:42.6482090Z",
+      "endedAt": "2026-08-01T22:16:49.0095410Z",
+      "result": "224/224 Mocha tests passed."
+    },
+    {
+      "command": "npm run test:manifest:postgres",
+      "status": "failed",
+      "exitCode": 1,
+      "startedAt": "2026-08-01T22:31:23.0469807Z",
+      "endedAt": "2026-08-01T22:31:27.6109184Z",
+      "result": "The package default used user manifest and failed password authentication against the Compose database; 0/5 passed."
+    },
+    {
+      "command": "MANIFEST_TEST_DATABASE_URL=<project hospital-a metadata URL> CLINIC_B_METADATA_TEST_DATABASE_URL=<project clinic-b metadata URL> npm run test:manifest:postgres",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-08-01T22:31:41.8307736Z",
+      "endedAt": "2026-08-01T22:31:45.4334980Z",
+      "result": "5/5 PostgreSQL manifest integration tests passed against project-scoped ports 5433 and 5435; credentials are redacted."
+    },
+    {
+      "command": "npm run test:gas",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-08-01T22:31:51.5687655Z",
+      "endedAt": "2026-08-01T22:31:59.7404650Z",
+      "result": "57/57 gas/report tests passed; gas-stats.json and gas-summary.md were genuinely regenerated."
+    },
+    {
+      "command": "npm run docs:check",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-08-01T22:32:04.3893321Z",
+      "endedAt": "2026-08-01T22:32:06.1417946Z",
+      "result": "10 documentation files checked and 15 JSON examples accepted."
+    },
+    {
+      "command": "docker compose --project-name consent-centered-network-authorization --file docker-compose.yml --file docker-compose.dev.yml --file docker-compose.identity.yml --file docker-compose.blockchain.yml --profile gateways config --quiet",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-08-01T22:39:54.9962950Z",
+      "endedAt": "2026-08-01T22:39:55.8985884Z",
+      "result": "Full project Compose configuration parsed; all 13 declared services were listed."
+    },
+    {
+      "command": "npm run verify:all",
+      "status": "blocked",
+      "exitCode": 2,
+      "startedAt": "2026-08-01T22:32:14.5588186Z",
+      "endedAt": "2026-08-01T22:34:47.7994643Z",
+      "result": "Typecheck, compile, 40 contracts, 224 middleware and 11 E2E safety tests passed; live e2e ended 14/14 blocked."
+    },
+    {
+      "command": "npm run e2e:run",
+      "status": "blocked",
+      "exitCode": 2,
+      "startedAt": "2026-08-01T22:34:53.5652304Z",
+      "endedAt": "2026-08-01T22:36:58.1472429Z",
+      "result": "reports/e2e-latest.json recorded keycloak readiness fetch failed, 14 blocked, 0 passed and 0 failed."
+    },
+    {
+      "command": "npm run e2e:up",
+      "status": "blocked",
+      "exitCode": 2,
+      "startedAt": "2026-08-01T22:37:16.9150346Z",
+      "endedAt": "2026-08-01T22:39:20.2927117Z",
+      "result": "Final project-scoped bring-up ended before gateways with keycloak fetch failed; no authorized vread was produced."
+    },
+    {
+      "command": "npm audit --omit=dev",
+      "status": "blocked",
+      "exitCode": 1,
+      "startedAt": "2026-08-01T22:39:53.0783647Z",
+      "endedAt": "2026-08-01T22:39:55.5424943Z",
+      "result": "npm registry bulk advisories endpoint returned an error; audit was not approved."
+    },
+    {
+      "command": "npm ls --depth=0",
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-08-01T22:39:52.9497312Z",
+      "endedAt": "2026-08-01T22:39:55.8623696Z",
+      "result": "Dependency tree resolved, but shared node_modules reported many extraneous packages; this is recorded as a limitation, not a clean-install claim."
+    }
+  ],
+  "servicesAndPorts": [
+    {
+      "service": "hospital-a-metadata-postgres",
+      "endpoint": "127.0.0.1:5433",
+      "status": "passed",
+      "evidence": "Compose container healthy and included in the 5/5 manifest integration run with redacted project bindings."
+    },
+    {
+      "service": "clinic-b-metadata-postgres",
+      "endpoint": "127.0.0.1:5435",
+      "status": "passed",
+      "evidence": "Compose container healthy and its separate-database isolation case passed."
+    },
+    {
+      "service": "keycloak",
+      "endpoints": ["127.0.0.1:8180", "127.0.0.1:8190/health/ready"],
+      "status": "blocked",
+      "evidence": "A direct smoke observation returned 200 on both public discovery and management readiness after startup, but the final E2E readiness gate returned fetch failed and no real token flow completed."
+    },
+    {
+      "service": "hospital-a-fhir",
+      "endpoint": "127.0.0.1:8081/fhir/metadata",
+      "status": "blocked",
+      "evidence": "Fresh metadata HTTP check returned 200, but Compose health status was unhealthy and no authorized institutional vread was completed."
+    },
+    {
+      "service": "clinic-b-fhir",
+      "endpoint": "127.0.0.1:8082/fhir/metadata",
+      "status": "blocked",
+      "evidence": "Fresh metadata HTTP check returned 200, but Compose health status was unhealthy and no interinstitutional read was completed."
+    },
+    {
+      "service": "hospital-a-gateway",
+      "endpoints": ["127.0.0.1:3001", "127.0.0.1:4001"],
+      "status": "blocked",
+      "evidence": "Gateway was never ready in the final run; no listener remained after project-scoped cleanup."
+    },
+    {
+      "service": "clinic-b-gateway",
+      "endpoints": ["127.0.0.1:3002", "127.0.0.1:4002"],
+      "status": "blocked",
+      "evidence": "Gateway was never ready in the final run; no listener remained after project-scoped cleanup."
+    },
+    {
+      "service": "besu validators",
+      "endpoints": ["127.0.0.1:8546", "internal:8545"],
+      "status": "blocked",
+      "evidence": "Project Compose created the blockchain network and started four validators during diagnosis, but no completed persistent deployment, restart or authorized gateway proof was captured."
+    }
+  ],
+  "negativeScenarios": [
+    { "id": "wrong-organization", "status": "blocked", "dataDelivered": false },
+    { "id": "wrong-practitioner", "status": "blocked", "dataDelivered": false },
+    { "id": "purpose-mismatch", "status": "blocked", "dataDelivered": false },
+    { "id": "revoked-consent", "status": "blocked", "dataDelivered": false },
+    { "id": "expired-consent", "status": "blocked", "dataDelivered": false },
+    { "id": "policy-version-mismatch", "status": "blocked", "dataDelivered": false },
+    { "id": "tampered-manifest", "status": "blocked", "dataDelivered": false },
+    { "id": "tampered-fhir-version", "status": "blocked", "dataDelivered": false },
+    { "id": "certificate-token-mismatch", "status": "blocked", "dataDelivered": false },
+    { "id": "assertion-replay", "status": "blocked", "dataDelivered": false },
+    { "id": "handoff-replay", "status": "blocked", "dataDelivered": false },
+    { "id": "blockchain-unavailable", "status": "blocked", "dataDelivered": false },
+    { "id": "metadata-postgres-unavailable", "status": "blocked", "dataDelivered": false }
+  ],
+  "securityChecks": {
+    "noClinicalPayloadDelivered": {
+      "status": "passed",
+      "evidence": "The latest sanitized blocked E2E report has dataDelivery=none for all 14 scenarios; no live denial response was executed."
+    },
+    "negativePayloadInvariant": {
+      "status": "passed",
+      "evidence": "Contract/middleware and E2E safety tests passed; the live negative cases remain blocked rather than being represented as passed."
+    },
+    "clinicalDataOnChain": {
+      "status": "passed",
+      "value": false,
+      "evidence": "The checked implementation stores authorization metadata/hashes; full Consent and clinical payload remain off-chain."
+    },
+    "directFhirAndRetiredRoutes": {
+      "status": "passed",
+      "evidence": "Covered by the 224 middleware tests, 11 E2E safety tests and docs contract check; no live route proof was claimed."
+    },
+    "identityAndAbacBindings": {
+      "status": "passed",
+      "evidence": "Passing contract/middleware suites cover trusted OIDC/UDAP/mTLS identity boundaries, Consent/policy/version/hash checks and institutional ABAC."
+    },
+    "finalArtifactsSanitized": {
+      "status": "passed",
+      "evidence": "This report and the final narrative contain no credentials, private key material, token, certificate or raw FHIR payload."
+    },
+    "dependencyAudit": {
+      "status": "blocked",
+      "evidence": "npm audit could not reach the registry advisories endpoint; npm ls exited 0 but reported extraneous shared node_modules packages."
+    },
+    "mtlsAndUdapLiveProof": {
+      "status": "blocked",
+      "evidence": "No gateway became ready, so no real certificate-bound UDAP token, mTLS request or institutional read was obtained."
+    }
+  },
+  "commitSequence": {
+    "preTask12": "d0705b01904494762656336b1c6512385c59b889",
+    "task12ArtifactBaseline": "0e42670672feba936c89f6ec1ca2bfb2c75a23d4",
+    "milestones": [
+      { "task": 1, "commits": ["daf768b", "c6ce9cb", "0b01795"] },
+      { "task": 2, "commits": ["a1f32b4", "d1e8df2", "fb9ab98"] },
+      { "task": 3, "commits": ["bc5ca74", "9230691", "e526464", "1ebbb37", "e08a14c"] },
+      { "task": 4, "commits": ["58c451f", "00dfb83", "d74feef", "2847e12", "a5ae2aa"] },
+      { "task": 5, "commits": ["9721ce0", "8b16bc0", "5c16d22", "6cea1d6"] },
+      { "task": 6, "commits": ["fa243a3", "dbf586d", "d4b0f74", "87d4a3e"] },
+      { "task": 7, "commits": ["0d61ddb", "5420f8c", "c35d27c"] },
+      { "task": 8, "commits": ["7f1c2cb", "9f0902c", "678d519", "8e52ff5"] },
+      { "task": 9, "commits": ["2e23411", "ff06cb1", "98cf63b", "cfe3d6e"] },
+      { "task": 10, "commits": ["29e81fe", "9e16ed5", "d3b205d", "575333e", "ea152b9"] },
+      { "task": 11, "commits": ["b088916", "41a9f6b", "62a21d5", "5867355", "d0705b0"] },
+      { "task": 12, "commits": ["0e42670", "current artifact refresh commit returned in handoff"] }
+    ]
+  },
+  "limitations": [
+    "The exact package-default PostgreSQL command failed because its default fixture credentials do not match the current project Compose credentials; the same five integration cases passed with the project bindings supplied through process-only environment variables.",
+    "The final E2E report is environment-blocked at Keycloak readiness with 14/14 scenarios blocked; no real authorized FHIR vread through the institutional path occurred.",
+    "Direct Keycloak and HAPI endpoint observations are readiness evidence only; they do not prove real tokens, mTLS, UDAP, Consent, gateway authorization or negative HTTP responses.",
+    "Besu network startup and Compose parsing are not persistent deployment/restart evidence.",
+    "npm audit was blocked by the registry advisories endpoint; npm ls was not a clean-install proof because shared node_modules contained extraneous packages.",
+    "The project-scoped reset script itself failed on a missing-volume inspect; equivalent project-scoped Compose down completed without broad cleanup. No non-project Docker resources were targeted.",
+    "Existing reports/e2e-latest.json and reports/udap-*.json were regenerated by live attempts or pre-existing work and are preserved outside this artifact refresh commit; the progress ledger was not edited by this gate."
+  ]
+}

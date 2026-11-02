@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 2,
+  "runId": "2026-09-06T23-00-17-907Z-371a6ab1",
+  "recordedAt": "2026-09-06T23:00:17.911Z",
+  "source": {
+    "revision": "49cdc8b348edcbec4cf95e8a53225e6dadad435c",
+    "dirty": true,
+    "sourceHash": "4d02a8d2d18f5484f57b89f6280154c9df627165d6ff2c17f94277a78a4a0707",
+    "nodeVersion": "v24.10.0",
+    "platform": "win32"
+  },
+  "report": {
+    "status": "passed",
+    "environment": "interopchain-96c056237d",
+    "services": [
+      {
+        "name": "interopchain-96c056237d-clinic-b-fhir-1",
+        "state": "running",
+        "status": "Up About a minute (healthy)",
+        "image": "interopchain-96c056237d-clinic-b-fhir:local"
+      },
+      {
+        "name": "interopchain-96c056237d-hospital-a-gateway-1",
+        "state": "running",
+        "status": "Up 6 minutes (healthy)",
+        "image": "interopchain-96c056237d-hospital-a-gateway:local"
+      },
+      {
+        "name": "interopchain-96c056237d-clinic-b-gateway-1",
+        "state": "running",
+        "status": "Up 6 minutes (healthy)",
+        "image": "interopchain-96c056237d-clinic-b-gateway:local"
+      },
+      {
+        "name": "interopchain-96c056237d-hospital-a-fhir-1",
+        "state": "running",
+        "status": "Up 6 hours (healthy)",
+        "image": "interopchain-96c056237d-hospital-a-fhir:local"
+      },
+      {
+        "name": "interopchain-96c056237d-hospital-a-metadata-postgres-1",
+        "state": "running",
+        "status": "Up 5 minutes (healthy)",
+        "image": "postgres:16-alpine"
+      },
+      {
+        "name": "interopchain-96c056237d-clinic-b-metadata-postgres-1",
+        "state": "running",
+        "status": "Up 6 hours (healthy)",
+        "image": "postgres:16-alpine"
+      },
+      {
+        "name": "interopchain-96c056237d-hospital-a-postgres-1",
+        "state": "running",
+        "status": "Up 6 hours (healthy)",
+        "image": "postgres:16-alpine"
+      },
+      {
+        "name": "interopchain-96c056237d-clinic-b-postgres-1",
+        "state": "running",
+        "status": "Up 6 hours (healthy)",
+        "image": "postgres:16-alpine"
+      },
+      {
+        "name": "interopchain-96c056237d-keycloak-1",
+        "state": "running",
+        "status": "Up 6 hours (healthy)",
+        "image": "quay.io/keycloak/keycloak:26.1"
+      },
+      {
+        "name": "interopchain-96c056237d-besu-clinic-b-validator-1",
+        "state": "running",
+        "status": "Up 6 hours (healthy)",
+        "image": "hyperledger/besu:26.5.0"
+      },
+      {
+        "name": "interopchain-96c056237d-besu-hospital-a-validator-1",
+        "state": "running",
+        "status": "Up 5 minutes (healthy)",
+        "image": "hyperledger/besu:26.5.0"
+      },
+      {
+        "name": "interopchain-96c056237d-besu-consortium-validator-1",
+        "state": "running",
+        "status": "Up 6 hours (healthy)",
+        "image": "hyperledger/besu:26.5.0"
+      },
+      {
+        "name": "interopchain-96c056237d-besu-auditor-validator-1",
+        "state": "running",
+        "status": "Up 6 hours (healthy)",
+        "image": "hyperledger/besu:26.5.0"
+      }
+    ],
+    "note": "Final Docker health observation; preserves existing project volumes. Clinical API behavior is established by the separate E2E reports."
+  }
+}

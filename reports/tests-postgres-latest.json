@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 2,
+  "runId": "2026-09-06T16-55-41-686Z-c37e78f8",
+  "recordedAt": "2026-09-06T16:55:41.688Z",
+  "source": {
+    "revision": "49cdc8b348edcbec4cf95e8a53225e6dadad435c",
+    "dirty": true,
+    "sourceHash": "fd45f96ae5d23dfc0857f234eed189c76bb79fe54ef1c4883dffc6ac9a8a6663",
+    "nodeVersion": "v24.10.0",
+    "platform": "win32"
+  },
+  "report": {
+    "status": "passed",
+    "category": "postgres",
+    "command": [
+      "node",
+      "scripts/run-hardhat.cjs",
+      "test",
+      "--no-compile",
+      "middleware/test/postgres-manifest-repository.test.ts",
+      "middleware/test/postgres-share-repository.test.ts"
+    ],
+    "durationMs": 1920,
+    "files": [
+      "middleware/test/postgres-manifest-repository.test.ts",
+      "middleware/test/postgres-share-repository.test.ts"
+    ],
+    "sourceBefore": "fd45f96ae5d23dfc0857f234eed189c76bb79fe54ef1c4883dffc6ac9a8a6663",
+    "sourceAfter": "fd45f96ae5d23dfc0857f234eed189c76bb79fe54ef1c4883dffc6ac9a8a6663",
+    "cases": [
+      {
+        "file": "middleware/test/postgres-manifest-repository.test.ts",
+        "title": "PostgreSQL versioned manifest repository reconciles the exact pending manifest row after a repository restart",
+        "status": "passed",
+        "durationMs": 81
+      },
+      {
+        "file": "middleware/test/postgres-manifest-repository.test.ts",
+        "title": "PostgreSQL versioned manifest repository keeps a new FHIR-only manifest pending until the corresponding active version is signed",
+        "status": "passed",
+        "durationMs": 46
+      },
+      {
+        "file": "middleware/test/postgres-manifest-repository.test.ts",
+        "title": "PostgreSQL versioned manifest repository rejects an activation signature that changes immutable clinical metadata",
+        "status": "passed",
+        "durationMs": 38
+      },
+      {
+        "file": "middleware/test/postgres-manifest-repository.test.ts",
+        "title": "PostgreSQL versioned manifest repository does not expose Hospital A active manifests through the separate Clínica B metadata database",
+        "status": "passed",
+        "durationMs": 65
+      },
+      {
+        "file": "middleware/test/postgres-manifest-repository.test.ts",
+        "title": "PostgreSQL versioned manifest repository atomically supersedes a signed v1 while activating its signed v2",
+        "status": "passed",
+        "durationMs": 58
+      },
+      {
+        "file": "middleware/test/postgres-share-repository.test.ts",
+        "title": "PostgreSQL share repository keeps a pending share unavailable until it is activated",
+        "status": "passed",
+        "durationMs": 17
+      },
+      {
+        "file": "middleware/test/postgres-share-repository.test.ts",
+        "title": "PostgreSQL share repository redeems a handoff code only once for its directed grantee before expiration",
+        "status": "passed",
+        "durationMs": 23
+      },
+      {
+        "file": "middleware/test/postgres-share-repository.test.ts",
+        "title": "PostgreSQL share repository does not redeem a code for a different institution or after expiration",
+        "status": "passed",
+        "durationMs": 28
+      }
+    ],
+    "stats": {
+      "passes": 8,
+      "failures": 0,
+      "pending": 0
+    }
+  }
+}

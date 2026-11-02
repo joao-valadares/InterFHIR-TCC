@@ -1,0 +1,6 @@
+# Keep versioned inputs byte-identical across Windows/Linux clones.
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.jpg binary
+*.zip binary

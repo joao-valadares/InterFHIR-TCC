@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 2,
+  "runId": "2026-09-06T22-56-41-726Z-88a8dfb2",
+  "recordedAt": "2026-09-06T22:56:41.728Z",
+  "source": {
+    "revision": "49cdc8b348edcbec4cf95e8a53225e6dadad435c",
+    "dirty": true,
+    "sourceHash": "4d02a8d2d18f5484f57b89f6280154c9df627165d6ff2c17f94277a78a4a0707",
+    "nodeVersion": "v24.10.0",
+    "platform": "win32"
+  },
+  "report": {
+    "status": "passed",
+    "scope": "one-authorized-real-request",
+    "observation": {
+      "kind": "access-observation",
+      "requestId": "req_b9c86a59-f9c5-474e-b23a-ade2332f0b97",
+      "status": 200,
+      "stages": [
+        {
+          "name": "consentRead",
+          "durationMs": 10.237357999998494,
+          "status": "confirmed"
+        },
+        {
+          "name": "commitmentCheck",
+          "durationMs": 16.302722000000358,
+          "status": "confirmed"
+        },
+        {
+          "name": "blockchainDecision",
+          "durationMs": 4224.30919,
+          "status": "confirmed",
+          "transactionHash": "0xee4616565739a56c6d92a24e23fbb2f08b16039f91219519237e87e6d9142a18",
+          "requestHash": "0x20e033572e80d9bf94bcfe4a13186562cca9723a140c97dcc389f966553d39d3"
+        },
+        {
+          "name": "blockchainVerification",
+          "durationMs": 4198.671844999997,
+          "status": "confirmed"
+        },
+        {
+          "name": "fhirVread",
+          "durationMs": 10.56920099999843,
+          "status": "confirmed"
+        },
+        {
+          "name": "consentRead",
+          "durationMs": 9.390842000000703,
+          "status": "confirmed"
+        },
+        {
+          "name": "blockchainVerification",
+          "durationMs": 4196.6678699999975,
+          "status": "confirmed"
+        },
+        {
+          "name": "auditEvent",
+          "durationMs": 33.580103000000236,
+          "status": "confirmed"
+        },
+        {
+          "name": "blockchainFinalization",
+          "durationMs": 4150.423522999998,
+          "status": "confirmed",
+          "transactionHash": "0x44616cf13623b0984f480d7a9ac2411dffc7c8fb1c97dad4c4dd1777837ba774"
+        },
+        {
+          "name": "consentRead",
+          "durationMs": 14.872282000003906,
+          "status": "confirmed"
+        },
+        {
+          "name": "blockchainVerification",
+          "durationMs": 4210.3878079999995,
+          "status": "confirmed"
+        }
+      ],
+      "durationMs": 21188.809519000002
+    },
+    "audit": {
+      "id": "59",
+      "outcome": "0",
+      "reason": "ACCESS_DECISION_PERMITTED"
+    },
+    "receipt": {
+      "transactionHash": "0x44616cf13623b0984f480d7a9ac2411dffc7c8fb1c97dad4c4dd1777837ba774",
+      "blockNumber": 2608,
+      "status": 1,
+      "gasUsed": "47704"
+    },
+    "finalization": {
+      "requestHash": "0x20e033572e80d9bf94bcfe4a13186562cca9723a140c97dcc389f966553d39d3",
+      "delivered": true,
+      "reasonCode": 1
+    },
+    "interpretation": "Gateway decision and release confirmation; not proof of remote receipt. This single observation is not a performance benchmark."
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "schemaVersion": 2,
+  "runId": "2026-10-11T22-26-17-997Z-3967fd02",
+  "recordedAt": "2026-10-11T22:26:17.998Z",
+  "source": {
+    "revision": "7511a558c97170f5b6fcb51558e5813480216767",
+    "dirty": true,
+    "sourceHash": "b68b7229969f92caf46080fd9c3b83c2f8ff0ca17dbb50567e93abd056c1ee70",
+    "nodeVersion": "v24.10.0",
+    "platform": "win32"
+  },
+  "report": {
+    "status": "passed",
+    "category": "contracts",
+    "command": [
+      "node",
+      "scripts/run-hardhat.cjs",
+      "test",
+      "--no-compile",
+      "test/health-access-control.test.ts",
+      "test/institution-registry.test.ts",
+      "test/registries.test.ts"
+    ],
+    "durationMs": 6782,
+    "files": [
+      "test/health-access-control.test.ts",
+      "test/institution-registry.test.ts",
+      "test/registries.test.ts"
+    ],
+    "sourceBefore": "b68b7229969f92caf46080fd9c3b83c2f8ff0ca17dbb50567e93abd056c1ee70",
+    "sourceAfter": "b68b7229969f92caf46080fd9c3b83c2f8ff0ca17dbb50567e93abd056c1ee70",
+    "cases": [
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl registers an organization and practitioner as authorized network participants",
+        "status": "passed",
+        "durationMs": 128
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl prevents non-owners from registering participants or policies through HealthAccessControl",
+        "status": "passed",
+        "durationMs": 75
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl registers an ABAC policy mask for treatment access to Observation resources",
+        "status": "passed",
+        "durationMs": 60
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl stores immutable policy versions and deactivates only the selected version",
+        "status": "passed",
+        "durationMs": 73
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl registers a patient Consent only against an active matching policy version",
+        "status": "passed",
+        "durationMs": 70
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl does not verify a cached legacy decision after the legacy path is disabled",
+        "status": "passed",
+        "durationMs": 61
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl enforces canonical policy role and specialty requirements from the registry",
+        "status": "passed",
+        "durationMs": 130
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl does not use legacy directed Consent as a canonical institutional authorization source",
+        "status": "passed",
+        "durationMs": 77
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl rejects a non-PEP and denies a divergent consent projection",
+        "status": "passed",
+        "durationMs": 77
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl allows an authorized custodian PEP to evaluate an interinstitutional request",
+        "status": "passed",
+        "durationMs": 82
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl re-evaluates an institutional decision after patient Consent revocation",
+        "status": "passed",
+        "durationMs": 92
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl re-evaluates institutional decisions after policy or registry deactivation",
+        "status": "passed",
+        "durationMs": 437
+      },
+      {
+        "file": "test/health-access-control.test.ts",
+        "title": "HealthAccessControl binds enforcement finalization to the institution gateway that made the decision",
+        "status": "passed",
+        "durationMs": 90
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry registers an institutional gateway with metadata commitment and can deactivate it",
+        "status": "passed",
+        "durationMs": 13
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry rejects non-owner institution administration",
+        "status": "passed",
+        "durationMs": 7
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry binds the configured gateway to an institution",
+        "status": "passed",
+        "durationMs": 13
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry exposes a fail-closed institution comparison for read-before-write bootstrap",
+        "status": "passed",
+        "durationMs": 11
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry allows stale deployment redeploy only for an exact missing-code error and explicit E2E flag",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry replaces an existing persistent deployment without leaving a temporary file",
+        "status": "passed",
+        "durationMs": 62
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry preserves the previous deployment and cleans the temporary file when replacement fails before rename",
+        "status": "passed",
+        "durationMs": 55
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry surfaces temporary cleanup failure while preserving the rename failure",
+        "status": "passed",
+        "durationMs": 52
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry does not remove a temporary file when exclusive creation fails before ownership",
+        "status": "passed",
+        "durationMs": 40
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry surfaces cleanup failure after a successful rename",
+        "status": "passed",
+        "durationMs": 47
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry preserves a write failure when closing the temporary file also fails",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry preserves a sync failure when closing the temporary file also fails",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry validates HealthAccessControl owner and all five persisted registry bindings",
+        "status": "passed",
+        "durationMs": 120
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry requires Ana to be an on-chain ConsentRegistry patient controller",
+        "status": "passed",
+        "durationMs": 59
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry registers Ana during the initial persistent deployment",
+        "status": "passed",
+        "durationMs": 314
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry preflights every institution before exposing any write transaction",
+        "status": "passed",
+        "durationMs": 48
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry applies the complete plan once and returns no writes on the repeat",
+        "status": "passed",
+        "durationMs": 83
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry fails closed when status observes an incomplete on-chain bootstrap",
+        "status": "passed",
+        "durationMs": 48
+      },
+      {
+        "file": "test/institution-registry.test.ts",
+        "title": "InstitutionRegistry reads the policy before writes and rejects a divergent policy",
+        "status": "passed",
+        "durationMs": 44
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries stores organizations and practitioners in AttributeRegistry",
+        "status": "passed",
+        "durationMs": 10
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries prevents non-owners from managing AttributeRegistry participants",
+        "status": "passed",
+        "durationMs": 12
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries stores and revokes patient consent in ConsentRegistry",
+        "status": "passed",
+        "durationMs": 14
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries rejects duplicate active consents for the same hash or scope",
+        "status": "passed",
+        "durationMs": 13
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries allows a new consent for the same scope after revocation",
+        "status": "passed",
+        "durationMs": 15
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries rejects consent records with empty pseudonymized scope fields",
+        "status": "passed",
+        "durationMs": 14
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries evaluates whether a consent matches scope and time without exposing clinical data",
+        "status": "passed",
+        "durationMs": 15
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries prevents unauthorized writers from registering consent for another data subject",
+        "status": "passed",
+        "durationMs": 18
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries versions patient Consents and requires the exact version for revocation and supersession",
+        "status": "passed",
+        "durationMs": 47
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries deactivates organizations, practitioners and licenses immediately",
+        "status": "passed",
+        "durationMs": 18
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries records access decisions in AuditRegistry without clinical data",
+        "status": "passed",
+        "durationMs": 9
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries prevents unauthorized accounts from writing audit decisions",
+        "status": "passed",
+        "durationMs": 7
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries records consent revocations in AuditRegistry without clinical data",
+        "status": "passed",
+        "durationMs": 10
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries stores resource integrity hashes without clinical data",
+        "status": "passed",
+        "durationMs": 10
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries anchors manifest commitments and transitions versions without clinical payloads",
+        "status": "passed",
+        "durationMs": 14
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries rejects inconsistent manifest versions and commitments",
+        "status": "passed",
+        "durationMs": 11
+      },
+      {
+        "file": "test/registries.test.ts",
+        "title": "InterFHIR registries anchors manifest revocation and rejects delivery-state reuse",
+        "status": "passed",
+        "durationMs": 12
+      }
+    ],
+    "stats": {
+      "passes": 49,
+      "failures": 0,
+      "pending": 0
+    }
+  }
+}
